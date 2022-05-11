@@ -1,2 +1,2 @@
 # cloudabis-angular-sample
-CloudABIS-CloudScanr sample web application
+Using CloudScanr and CloudABIS to do biometric businees.
