@@ -1,0 +1,120 @@
+<div class="content-wrapper pb-0">
+  <div class="page-header flex-wrap">
+    <div class="header-left">
+      <button class="btn btn-primary mb-2 mb-md-0 me-2"> Change ID </button>
+      <button class="btn btn-outline-primary bg-white mb-2 mb-md-0"
+        [routerLink]="[V10RouteConstants.BIOCLOUD_V10_HOME_ROUTE]" routerLinkActive="active"> Back To Home </button>
+    </div>
+
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="{{V10RouteConstants.BIOCLOUD_V10_HOME_ROUTE}}"
+            routerLinkActive="active">Bio Cloud 10</a></li>
+        <li class="breadcrumb-item active" aria-current="page"> Change ID </li>
+      </ol>
+    </nav>
+  </div>
+
+  <div class="row">
+    <div class="d-flex justify-content-center">
+      <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Change ID</h4>
+            <p class="card-description">It changes the registration id with the new registration/ enroll id.</p>
+          </div>
+          <div class="card-body">
+            <form class="forms-sample" id="bioCloudChangeIdForm" [formGroup]="bioCloudChangeIdForm" #f="ngForm"
+              (ngSubmit)="onSubmit()">
+
+              <div class="form-group row">
+                <label for="customerKey" class="col-sm-3 col-form-label">Customer Key</label>
+                <div class="col-sm-9">
+                  <input type="text" [disabled]="true" [readonly]="true" class="form-control disable-click" id="customerKey" name="customerKey"
+                    formControlName="customerKey" placeholder="Customer Key" autofocus />
+                </div>
+                <div
+                  *ngIf="bioCloudChangeIdForm.get('customerKey').invalid && (bioCloudChangeIdForm.get('customerKey').dirty || bioCloudChangeIdForm.get('customerKey').touched)"
+                  class="text-danger field-require-text-msg">
+                  <span *ngIf="bioCloudChangeIdForm.get('customerKey').errors?.required"><i>Please choose valid
+                      device</i></span>
+                  <span *ngIf="bioCloudChangeIdForm.get('customerKey').errors?.noWhiteSpace"><i>White and empty spaces
+                      are not allowed</i></span>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="engineName" class="col-sm-3 col-form-label">Engine Name</label>
+                <div class="col-sm-9">
+                  <input type="text" [disabled]="true" [readonly]="true" class="form-control disable-click" id="engineName" name="engineName"
+                    formControlName="engineName" placeholder="Current Engine Name" autofocus />
+                </div>
+                <div
+                  *ngIf="bioCloudChangeIdForm.get('engineName').invalid && (bioCloudChangeIdForm.get('engineName').dirty || bioCloudChangeIdForm.get('engineName').touched)"
+                  class="text-danger field-require-text-msg">
+                  <span *ngIf="bioCloudChangeIdForm.get('engineName').errors?.required"><i>Please choose valid
+                      device</i></span>
+                  <span *ngIf="bioCloudChangeIdForm.get('engineName').errors?.noWhiteSpace"><i>White and empty spaces
+                      are not allowed</i></span>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="registrationNo" class="col-sm-3 col-form-label">Registration ID</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="registrationNo" name="registrationNo"
+                    formControlName="registrationNo" placeholder="Registration Id" />
+                </div>
+
+                <div
+                  *ngIf="bioCloudChangeIdForm.get('registrationNo').invalid && (bioCloudChangeIdForm.get('registrationNo').dirty || bioCloudChangeIdForm.get('registrationNo').touched)"
+                  class="text-danger field-require-text-msg">
+                  <span *ngIf="bioCloudChangeIdForm.get('registrationNo').errors?.required"><i>Please input a valid
+                      registration id</i></span>
+                  <span
+                    *ngIf="bioCloudChangeIdForm.get('registrationNo').errors?.minlength && !(bioCloudChangeIdForm.get('registrationNo').errors?.noWhiteSpace)"><i>Enter
+                      atleast 10 characters</i></span>
+                  <span *ngIf="bioCloudChangeIdForm.get('registrationNo').errors?.noWhiteSpace"><i>White and empty
+                      spaces are not allowed</i></span>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="newRegistrationNo" class="col-sm-3 col-form-label">New Registration ID</label>
+                <div class="col-sm-9"><input type="text" class="form-control" id="newRegistrationNo"
+                    name="newRegistrationNo" formControlName="newRegistrationNo" placeholder="New Registration Id" />
+                </div>
+
+                <div
+                  *ngIf="bioCloudChangeIdForm.get('newRegistrationNo').invalid && (bioCloudChangeIdForm.get('newRegistrationNo').dirty || bioCloudChangeIdForm.get('newRegistrationNo').touched)"
+                  class="text-danger field-require-text-msg">
+                  <span *ngIf="bioCloudChangeIdForm.get('newRegistrationNo').errors?.required"><i>Please input a valid
+                      new registration id</i></span>
+                  <span
+                    *ngIf="bioCloudChangeIdForm.get('newRegistrationNo').errors?.minlength && !(bioCloudChangeIdForm.get('newRegistrationNo').errors?.noWhiteSpace)"><i>Enter
+                      atleast 10 characters</i></span>
+                  <span *ngIf="bioCloudChangeIdForm.get('newRegistrationNo').errors?.noWhiteSpace"><i>White and empty
+                      spaces are not allowed</i></span>
+                </div>
+              </div>
+
+              <div class="row">
+                <div  class="col-md-8"></div>
+                <div class="col-md-4  btn-right-div">
+                  <button type="submit" form="bioCloudChangeIdForm" [disabled]="!f.valid" class="btn btn-primary btn-margin-right">
+                    Change ID
+                  </button>
+                  <button class="btn btn-primary me-0 btn-margin-right" (click)="cancel()">Close</button>
+                  <!-- <img id="btnEventLoader" *ngIf="loading" class="pl-3" src="{{imageLoader}}" /> -->
+                </div>
+              </div>
+            </form>
+          </div>
+          <div id="changeIdFooter" class="card-footer">
+            <alert id="alertdiv"></alert>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

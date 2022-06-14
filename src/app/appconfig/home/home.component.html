@@ -1,0 +1,150 @@
+<div class="content-wrapper pb-0">
+    <div class="page-header flex-wrap">
+      <div class="header-left">
+        <button class="btn btn-primary mb-2 mb-md-0 me-2"> App Configuration </button>
+        <button class="btn btn-outline-primary bg-white mb-2 mb-md-0" [routerLink]="['/home/dashboard']"
+          routerLinkActive="active"> Back To Home </button>
+      </div>
+  
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/home" routerLinkActive="active">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page"> App Configuration </li>
+        </ol>
+      </nav>
+    </div>
+  
+    <div class="row">
+      <div class="d-flex justify-content-center">
+        <div class="col-md-8 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-header">
+              <div class="row">
+                <div class="header-left text-left">
+                  <h4 class="card-title">Application Configuration</h4>
+                  <p class="card-description">Setup your application configuration for FingerPrint, Face, Iris,
+                    FingerVein,
+                    or
+                    Multimodality Engine.</p>
+                </div>
+                <div class="header-right text-right ">
+  
+                  <!-- <div class="form-check form-switch">
+                    <input class="form-check-input" (click)="changeVersion($event)" type="checkbox" id="chkVersion" [checked]="isV12">
+                  </div> -->
+                  <div class="form-check-primary  form-switch remember-me" style="margin-bottom: 10px;">
+                    <label class="form-input-label">
+                      <input type="checkbox" class="form-check-input" (click)="changeVersion($event)" id="chkVersion" [checked]="isV12" /> {{isV12? 'V12':'V10'}} </label>
+                  </div>
+  
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+  
+              <form class="forms-sample" id="bioCloudConfigForm" [formGroup]="bioCloudConfigForm" #f="ngForm"
+                (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <label for="deviceName">Select device</label>
+                  <select name="select" class="form-control-sm form-control" id="deviceName" name="deviceName"
+                    formControlName="deviceName" (change)="changeDevice($event)">
+                    <option *ngFor="let device of deviceNameList" value={{device.name}}>
+                      {{device.description}}
+                    </option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="engineName">Engine Name</label>
+                  <input type="text" [readonly]="true" class="form-control" id="engineName" name="engineName"
+                    formControlName="engineName" placeholder="Engine Name" autofocus />
+                  <div
+                    *ngIf="bioCloudConfigForm.get('engineName').invalid && (bioCloudConfigForm.get('engineName').dirty || bioCloudConfigForm.get('engineName').touched)"
+                    class="text-danger field-require-text-msg">
+                    <span *ngIf="bioCloudConfigForm.get('engineName').errors?.required"><i>Please choose valid
+                        engine</i></span>
+                    <span *ngIf="bioCloudConfigForm.get('engineName').errors?.noWhiteSpace"><i>White and empty spaces are
+                        not
+                        allowed</i></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="apiBaseUrl">{{isV12? CommonConstants.MATCHING_API_URL:CommonConstants.API_URL}}</label>
+                  <input type="text" class="form-control" id="apiBaseUrl" name="apiBaseUrl" formControlName="apiBaseUrl"
+                    placeholder="{{isV12? CommonConstants.MATCHING_API_URL:CommonConstants.API_URL}}" />
+                  <div
+                    *ngIf="bioCloudConfigForm.get('apiBaseUrl').invalid && (bioCloudConfigForm.get('apiBaseUrl').dirty || bioCloudConfigForm.get('apiBaseUrl').touched)"
+                    class="text-danger field-require-text-msg">
+                    <span *ngIf="bioCloudConfigForm.get('apiBaseUrl').errors?.required"><i>Please input a {{isV12? CommonConstants.MATCHING_API_URL:CommonConstants.API_URL}}</i></span>
+                    <span
+                      *ngIf="bioCloudConfigForm.get('apiBaseUrl').errors?.minlength && !(bioCloudConfigForm.get('apiBaseUrl').errors?.noWhiteSpace)"><i>Enter
+                        atleast 10
+                        characters</i></span>
+                    <span *ngIf="bioCloudConfigForm.get('apiBaseUrl').errors?.noWhiteSpace"><i>White and empty spaces are
+                        not
+                        allowed</i></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="clientApiKey">{{isV12? CommonConstants.CLIENT_API_KEY:CommonConstants.APP_KEY}}</label>
+                  <input type="text" class="form-control" id="clientApiKey" name="clientApiKey"
+                    formControlName="clientApiKey" placeholder="{{isV12? CommonConstants.CLIENT_API_KEY:CommonConstants.APP_KEY}}" />
+                  <div
+                    *ngIf="bioCloudConfigForm.get('clientApiKey').invalid && (bioCloudConfigForm.get('clientApiKey').dirty || bioCloudConfigForm.get('clientApiKey').touched)"
+                    class="text-danger field-require-text-msg">
+                    <span *ngIf="bioCloudConfigForm.get('clientApiKey').errors?.required"><i>Please input a valid {{isV12? CommonConstants.CLIENT_API_KEY:CommonConstants.APP_KEY}}</i></span>
+                    <span
+                      *ngIf="bioCloudConfigForm.get('clientApiKey').errors?.minlength && !(bioCloudConfigForm.get('clientApiKey').errors?.noWhiteSpace)"><i>Enter
+                        atleast 10
+                        characters</i></span>
+                    <span *ngIf="bioCloudConfigForm.get('clientApiKey').errors?.noWhiteSpace"><i>White and empty spaces
+                        are not
+                        allowed</i></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="clientKey">{{isV12? CommonConstants.CLIENT_KEY:CommonConstants.CUSTOMER_KEY}}</label>
+                  <input type="text" class="form-control" id="clientKey" name="clientKey" formControlName="clientKey"
+                    placeholder="{{isV12? CommonConstants.CLIENT_KEY:CommonConstants.CUSTOMER_KEY}}" />
+                  <div
+                    *ngIf="bioCloudConfigForm.get('clientKey').invalid && (bioCloudConfigForm.get('clientKey').dirty || bioCloudConfigForm.get('clientKey').touched)"
+                    class="text-danger field-require-text-msg">
+                    <span *ngIf="bioCloudConfigForm.get('clientKey').errors?.required"><i>Please input a valid {{isV12? CommonConstants.CLIENT_KEY:CommonConstants.CUSTOMER_KEY}}</i></span>
+                    <span
+                      *ngIf="bioCloudConfigForm.get('clientKey').errors?.minlength && !(bioCloudConfigForm.get('clientKey').errors?.noWhiteSpace)"><i>Enter
+                        atleast 10
+                        characters</i></span>
+                    <span *ngIf="bioCloudConfigForm.get('clientKey').errors?.noWhiteSpace"><i>White and empty spaces are
+                        not
+                        allowed</i></span>
+                  </div>
+                </div>
+                <!-- *ngIf="(!isV12) && (bioCloudConfigForm.get('secretKey').invalid && (bioCloudConfigForm.get('secretKey').dirty || bioCloudConfigForm.get('secretKey').touched))" -->
+                <div class="form-group" *ngIf="!isV12">
+                  <label for="secretKey">{{CommonConstants.SECRET_KEY}}</label>
+                  <input type="text" class="form-control" id="secretKey" name="secretKey" formControlName="secretKey"
+                    placeholder="Secret Key" />
+                  <div
+                    *ngIf="(bioCloudConfigForm.get('secretKey').invalid && (bioCloudConfigForm.get('secretKey').dirty || bioCloudConfigForm.get('secretKey').touched))"
+                    class="text-danger field-require-text-msg">
+                    <span *ngIf="bioCloudConfigForm.get('secretKey').errors?.required"><i>Please input a valid {{CommonConstants.SECRET_KEY}}</i></span>
+                    <span
+                      *ngIf="bioCloudConfigForm.get('secretKey').errors?.minlength && !(bioCloudConfigForm.get('secretKey').errors?.noWhiteSpace)"><i>Enter
+                        atleast 10
+                        characters</i></span>
+                    <span *ngIf="bioCloudConfigForm.get('secretKey').errors?.noWhiteSpace"><i>White and empty spaces are
+                        not
+                        allowed</i></span>
+                  </div>
+                </div>
+                
+                <button type="submit" form="bioCloudConfigForm" [disabled]="!f.valid" class="btn btn-primary me-2"> Save
+                </button>
+                <img *ngIf="loading" class="pl-3" src="{{imageLoader}}" />
+                <button class="btn btn-light" (click)="cancel()">Cancel</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+   </div>
+  </div>

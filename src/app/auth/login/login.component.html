@@ -1,0 +1,54 @@
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper">
+      <div class="main-panel">
+        <div class="content-wrapper" style="flex-grow: unset">
+          <div class="row">
+            <div class="col-12">
+              <div class="d-flex justify-content-center" style="height: 100vh;">
+                <div class="align-self-center p-2 bd-highlight">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">User Login</h4>
+                      <form class="form-inline"   id="usrLoginForm"  [formGroup]="userLoginForm" #f="ngForm" (ngSubmit)="onSubmit()">
+                        <label class="sr-only" for="username">User Name</label>
+                        <input  type="text" class="form-control mb-2 mr-sm-2" name="username" id="username" formControlName="username" placeholder="User Name" required autocomplete="off" >
+                        <label class="sr-only" for="txtPassword">Password</label>
+                        <div class="input-group mb-2 mr-sm-2">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">@</div>
+                          </div>
+                            <input type="password" style="height: 45px" class="form-control" id="password" name="password" formControlName="password"
+                            placeholder="Password" required autocomplete="off">
+                        </div>
+                        <!-- <div class="form-check mx-sm-2">
+                          <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" checked />
+                            Remember me
+                          </label>
+                        </div> -->
+                        <div class="form-check-primary remember-me" style="margin-bottom: 10px;">
+                          <label class="form-input-label">
+                            <input type="checkbox" class="form-check-input" checked /> Remember me </label>
+                        </div>
+                        <button type="submit" form="usrLoginForm" [disabled]="!f.valid" class="btn btn-primary mb-2">
+                          Submit
+                        </button>
+                        <img *ngIf="loading" class="pl-3" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                      </form>
+                    </div>
+                    <alert></alert>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  

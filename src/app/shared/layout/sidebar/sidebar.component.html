@@ -1,0 +1,131 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+    <li class="nav-item nav-profile border-bottom">
+      <!-- <a href="#" class="nav-link flex-column">
+        <div class="nav-profile-image">
+          <img src="assets/images/faces/person.jpg" alt="profile" />
+        </div>
+        <div class="nav-profile-text d-flex ms-0 mb-3 flex-column">
+          <span class="font-weight-semibold mb-1 mt-2 text-center">{{currentUser.firstName}} {{currentUser.lastName}}</span>
+        </div>
+      </a> -->
+      <a routerLink="home/dashboard" routerLinkActive="active" class="nav-link flex-column">
+        <div class="nav-profile-image">
+          <img src="assets/images/faces/person.jpg" alt="profile" />
+          <!--change to offline or busy as needed-->
+        </div>
+        <div class="nav-profile-text d-flex ms-0 mb-3 flex-column">
+          <span class="font-weight-semibold mb-1 mt-2 text-center">{{currentUser.firstname}} {{currentUser.lastname}}</span>
+          <!-- <span class="text-secondary icon-sm text-center">$3499.00</span> -->
+        </div>
+      </a>
+    </li>
+    <li class="nav-item pt-3">
+      <a class="nav-link d-block" routerLink="home/dashboard" routerLinkActive="active">
+        <!-- <img class="sidebar-brand-logo" src="assets/images/logo.svg" alt="" /> -->
+        <img class="sidebar-brand-logo" src="assets/images/logo.jpg" alt="" />
+        <img class="sidebar-brand-logomini" src="assets/images/logo-mini.jpg" alt="" />
+        <div class="small font-weight-light pt-1">Biometric Cloud Solution</div>
+      </a>
+      <form class="d-flex align-items-center" action="#">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <i class="input-group-text border-0 mdi mdi-magnify"></i>
+          </div>
+          <input type="text" class="form-control border-0" placeholder="Search" />
+        </div>
+      </form>
+    </li>
+    <li class="pt-2 pb-1">
+      <span class="nav-item-head">Menu Pages</span>
+    </li>
+    <li class="nav-item">
+      <!-- <a class="nav-link" href="/business/home">
+        <i class="mdi mdi-compass-outline menu-icon"></i>
+        <span class="menu-title">Home</span>
+      </a> -->
+      <a class="nav-link" routerLink="home/dashboard" routerLinkActive="active" ><i class="mdi mdi-compass-outline menu-icon"></i><span class="menu-title">Home</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="appconfig/home" routerLinkActive="active" ><i class="mdi mdi-compass-outline menu-icon"></i><span class="menu-title">App Configuration</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#cloudabisv12-basic" aria-expanded="false" aria-controls="cloudabisv12-basic">
+        <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+        <span class="menu-title">CloudABIS V12</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="cloudabisv12-basic">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="biocloud/v12/home" routerLinkActive="active" >V12 Home</a>
+            <!-- <a class="nav-link" routerLink="biocloud/appconfig" routerLinkActive="active" >App Configuration</a> -->
+            <!-- <a class="nav-link"  href="javascript:void(0)" routerLink="biocloud/appconfig"  routerLinkActive="active">App Configuration</a> -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="biocloud/v12/isregister" routerLinkActive="active" >Is Register</a>
+            <!-- <a class="nav-link"  href="javascript:void(0)" routerLink="biocloud/register"  routerLinkActive="active">Register</a> -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="biocloud/v12/register" routerLinkActive="active" >Register</a>
+            <!-- <a class="nav-link"  href="javascript:void(0)" routerLink="biocloud/register"  routerLinkActive="active">Register</a> -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="biocloud/v12/identify" routerLinkActive="active" >Identify</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="biocloud/v12/verify" routerLinkActive="active" >Verify</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="biocloud/v12/update" routerLinkActive="active" >Update</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="biocloud/v12/changeid" routerLinkActive="active" >Change ID</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="biocloud/v12/deleteid" routerLinkActive="active" >Delete ID</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#cloudabisv10-basic" aria-expanded="false" aria-controls="cloudabisv10-basic">
+        <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+        <span class="menu-title">CloudABIS V10</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="cloudabisv10-basic">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="biocloud/v10/home" routerLinkActive="active" >V10 Home</a>
+            <!-- <a class="nav-link" routerLink="biocloud/appconfig" routerLinkActive="active" >App Configuration</a> -->
+            <!-- <a class="nav-link"  href="javascript:void(0)" routerLink="biocloud/appconfig"  routerLinkActive="active">App Configuration</a> -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="biocloud/v10/isregister" routerLinkActive="active" >Is Register</a>
+            <!-- <a class="nav-link"  href="javascript:void(0)" routerLink="biocloud/register"  routerLinkActive="active">Register</a> -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="biocloud/v10/register" routerLinkActive="active" >Register</a>
+            <!-- <a class="nav-link"  href="javascript:void(0)" routerLink="biocloud/register"  routerLinkActive="active">Register</a> -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="biocloud/v10/identify" routerLinkActive="active" >Identify</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="biocloud/v10/verify" routerLinkActive="active" >Verify</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="biocloud/v10/update" routerLinkActive="active" >Update</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="biocloud/v10/changeid" routerLinkActive="active" >Change ID</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="biocloud/v10/deleteid" routerLinkActive="active" >Delete ID</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</nav>

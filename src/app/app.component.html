@@ -1,0 +1,38 @@
+<ngx-spinner name="spinrRoot" bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+<ngx-spinner name="spinrAllModules" [fullScreen]="false" type="line-spin-clockwise-fade-rotating" size="medium">
+  <p style="font-size: 20px; color: white">Please wait...</p>
+</ngx-spinner>
+<ngx-spinner name="spinrConfig" [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium">
+  <p style="font-size: 20px; color: white">Configuring the environment.<br> Please wait...</p>
+</ngx-spinner>
+
+<!-- <ngx-spinner
+  bdColor="rgba(0, 0, 0, 1)"
+  template="<img src='https://media.giphy.com/media/o8igknyuKs6aY/giphy.gif' />"
+>
+</ngx-spinner> -->
+<div class="container-scroller">
+  <!-- Partial Section: SideBar Start -->
+  <app-sidebar id="sidebarapp"></app-sidebar>
+  <!-- Partial Section: SideBar Ends -->
+
+  <!-- Body Wrapper Start -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- Partial Section: settings-panel Starts -->
+    <app-settingpanel  id="settingpanelapp"></app-settingpanel>
+    <!-- Partial Section: settings-panel Ends -->
+
+    <!-- Partial Section: Navbar Starts -->
+    <app-navbar  id="navbarapp"></app-navbar>
+    <!-- Partial Section: Navbar Ends -->
+    <div class="main-panel">
+      <router-outlet></router-outlet>
+      <!-- Partial Section: Footer Starts -->
+      <app-footer  id="footerapp"></app-footer>
+      <!-- Partial Section: Footer Ends -->
+    </div>
+  </div>
+  <!-- Body Wrapper Ends -->
+</div>

@@ -1,0 +1,71 @@
+<div class="content-wrapper pb-0">
+  <div class="page-header flex-wrap">
+    <div class="header-left">
+      <button class="btn btn-primary mb-2 mb-md-0 me-2"> Is Register </button>
+      <button class="btn btn-outline-primary bg-white mb-2 mb-md-0"
+        [routerLink]="[V12RouteConstants.BIOCLOUD_V12_HOME_ROUTE]" routerLinkActive="active"> Back To Home </button>
+    </div>
+
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="{{V12RouteConstants.BIOCLOUD_V12_HOME_ROUTE}}"
+            routerLinkActive="active">Bio Cloud 12</a></li>
+        <li class="breadcrumb-item active" aria-current="page"> Is Register </li>
+      </ol>
+    </nav>
+  </div>
+
+  <div class="row">
+    <div class="d-flex justify-content-center">
+      <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Is Register</h4>
+            <p class="card-description">It checks the registration or enrollmenet id whether it does exist or not.</p>
+          </div>
+          <div class="card-body">
+            <!-- <button class="btn btn-light" (click)="authenticate($event)"> Authenticate The Call</button> -->
+            <!-- <h4 class="card-title">Is Register</h4>
+            <p class="card-description">It checks the registration or enrollmenet id whether it does exist or not.</p> -->
+            <form class="forms-sample" id="bioCloudIsRegisterForm" [formGroup]="bioCloudIsRegisterForm" #f="ngForm"
+              (ngSubmit)="onSubmit()">
+
+              <div class="form-group">
+                <label for="registrationNo">Registration ID</label>
+                <input type="text" class="form-control" id="registrationNo" name="registrationNo"
+                  formControlName="registrationNo" placeholder="Registration Id" />
+                <div
+                  *ngIf="bioCloudIsRegisterForm.get('registrationNo').invalid && (bioCloudIsRegisterForm.get('registrationNo').dirty || bioCloudIsRegisterForm.get('registrationNo').touched)"
+                  class="text-danger field-require-text-msg">
+                  <span *ngIf="bioCloudIsRegisterForm.get('registrationNo').errors?.required"><i>Please input a valid
+                      registration id</i></span>
+                  <span
+                    *ngIf="bioCloudIsRegisterForm.get('registrationNo').errors?.minlength && !(bioCloudIsRegisterForm.get('registrationNo').errors?.noWhiteSpace)"><i>Enter
+                      atleast 10 characters</i></span>
+                  <span *ngIf="bioCloudIsRegisterForm.get('registrationNo').errors?.noWhiteSpace"><i>White and empty
+                      spaces are not allowed</i></span>
+                </div>
+              </div>
+
+              
+              <div class="row">
+                <div class="col-md-8"></div>
+                <div class="col-md-4  btn-right-div">
+                  <button type="submit" form="bioCloudIsRegisterForm" [disabled]="!f.valid" class="btn btn-primary me-2">
+                    Check ID
+                  </button>
+                  <button class="btn btn-primary me-0 btn-margin-right" (click)="cancel()">Close</button>
+                  <!-- <img id="btnEventLoader" *ngIf="loading" class="pl-3" src="{{imageLoader}}" /> -->
+                </div>
+              </div>
+
+            </form>
+          </div>
+          <div id="isRegFooter" class="card-footer">
+            <alert id="alertdiv"></alert>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

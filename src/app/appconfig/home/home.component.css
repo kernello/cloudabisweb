@@ -1,0 +1,17 @@
+
+
+
+.field-require-text-msg{
+    font-size: small;
+}
+
+.header-left{
+    width: 80%;
+    max-width: 80%;
+    text-align: left
+}
+.header-right{
+    width: 20%;
+    max-width: 20%;
+    text-align: right
+}

@@ -1,0 +1,18 @@
+.field-require-text-msg{
+    font-size: small;
+}
+
+.btn-margin-right{
+    margin-right: 10px;
+}
+
+.btn-right-div{
+    text-align: -webkit-right;
+    margin: 0px 0px 0px 0px;
+}
+
+.disable-click{
+    border:0px; 
+    color: gray;
+    pointer-events: none;
+}

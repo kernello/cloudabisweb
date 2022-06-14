@@ -1,0 +1,103 @@
+<div class="content-wrapper pb-0">
+  <div class="page-header flex-wrap">
+    <div class="header-left">
+      <button class="btn btn-primary mb-2 mb-md-0 me-2"> Verify </button>
+      <button class="btn btn-outline-primary bg-white mb-2 mb-md-0"
+        [routerLink]="[V10RouteConstants.BIOCLOUD_V10_HOME_ROUTE]" routerLinkActive="active"> Back To Home </button>
+    </div>
+
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="{{V10RouteConstants.BIOCLOUD_V10_HOME_ROUTE}}"
+            routerLinkActive="active">Bio Cloud 10</a></li>
+        <li class="breadcrumb-item active" aria-current="page"> Verify </li>
+      </ol>
+    </nav>
+  </div>
+  <!-- first row starts here -->
+  <div class="row">
+    <div class="d-flex justify-content-center">
+      <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Biometric Capture & Verification</h4>
+            <p class="card-description">It capture the biometric data using the capture tool and send the capture data
+              to the CloudABIS V10 Matching service and receive the response from the service to verifying the biometric data.</p>
+          </div>
+          <div class="card-body">
+            <!-- <h4 class="card-title">Biometric Capture & Registration</h4>
+            <p class="card-description">It capture the biometric data using the capture tool and send the capture data
+              to the CloudABIS V12 Matching service and receive the response from the service.</p> -->
+            <form class="forms-sample" id="bioCloudVerifyForm" [formGroup]="bioCloudVerifyForm" #f="ngForm"
+              (ngSubmit)="onSubmit()">
+              <div class="form-group row">
+                <label for="captureType" class="col-sm-3 col-form-label">Capture Type</label>
+                <div class="col-sm-9">
+                  <select name="select" class="form-control-sm form-control" id="captureType" name="captureType"
+                    formControlName="captureType">
+                    <option *ngFor="let captureType of captureTypeList" value={{captureType.name}}>
+                      {{captureType.description}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="deviceName" class="col-sm-3 col-form-label">Current Device Name</label>
+                <div class="col-sm-9">
+                  <input type="text"  [disabled]="true" [readonly]="true" class="form-control disable-click" id="deviceName" name="deviceName"
+                    formControlName="deviceName" placeholder="Current Device Name" autofocus />
+                </div>
+                <div
+                  *ngIf="bioCloudVerifyForm.get('deviceName').invalid && (bioCloudVerifyForm.get('deviceName').dirty || bioCloudVerifyForm.get('deviceName').touched)"
+                  class="text-danger field-require-text-msg">
+                  <span *ngIf="bioCloudVerifyForm.get('deviceName').errors?.required"><i>Please choose valid
+                      device</i></span>
+                  <span *ngIf="bioCloudVerifyForm.get('deviceName').errors?.noWhiteSpace"><i>White and empty spaces
+                      are not allowed</i></span>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="registrationNo" class="col-sm-3 col-form-label">Registration ID</label>
+                <div class="col-sm-9">
+
+                  <input type="text" class="form-control" id="registrationNo" name="registrationNo"
+                    formControlName="registrationNo" placeholder="Registration Id" />
+                  <div
+                    *ngIf="bioCloudVerifyForm.get('registrationNo').invalid && (bioCloudVerifyForm.get('registrationNo').dirty || bioCloudVerifyForm.get('registrationNo').touched)"
+                    class="text-danger field-require-text-msg">
+                    <span *ngIf="bioCloudVerifyForm.get('registrationNo').errors?.required"><i>Please input a valid
+                        registration id</i></span>
+                    <span
+                      *ngIf="bioCloudVerifyForm.get('registrationNo').errors?.minlength && !(bioCloudVerifyForm.get('registrationNo').errors?.noWhiteSpace)"><i>Enter
+                        atleast 10
+                        characters</i></span>
+                    <span *ngIf="bioCloudVerifyForm.get('registrationNo').errors?.noWhiteSpace"><i>White and empty
+                        spaces are
+                        not
+                        allowed</i></span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div  class="col-md-5"></div>
+                <div class="col-md-7  btn-right-div">
+                  <button type="submit" class="btn btn-primary btn-margin-right"> Biometric Capture </button>
+                  <button type="button" class="btn btn-primary btn-margin-right" [disabled]=verifyBtnDisabled
+                  (click)="verify();"> Verify </button>
+                  <button class="btn btn-primary me-0 btn-margin-right" (click)="cancel()">Close</button>
+                  <!-- <img id="btnEventLoader" *ngIf="loading" class="pl-3" src="{{imageLoader}}" /> -->
+                </div>
+              </div>
+            </form>
+          </div>
+          <div id="verifyFooter" class="card-footer">
+            <alert id="alertdiv"></alert>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
