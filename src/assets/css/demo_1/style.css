@@ -16263,10 +16263,34 @@ code {
   font-size: 13px;
 }
 
+.main-panel .content-wrapper .card-ad-01-img {
+  background-image: url("../../images/blood-plasma-for-cancer-therapy-min.png");
+  background-size: cover;
+}
+
+.main-panel .content-wrapper .card-ad-02-img {
+  background-image: url("../../images/turkish-national-id-min.png");
+  background-size: cover;
+}
+
 .main-panel .content-wrapper .card-img {
   background-image: url("../../images/bg_card.jpg");
   background-size: cover;
 }
+
+.main-panel .content-wrapper .card-ad-04-img {
+  background-image: url("../../images/egov-section.png");
+  background-size: cover;
+}
+.main-panel .content-wrapper .card-ad-05-img {
+  background-image: url("../../images/banking-financial-min.png");
+  background-size: cover;
+}
+.main-panel .content-wrapper .card-ad-06-img {
+  background-image: url("../../images/We-prevent-releasing-the-wrong-inmate-min.png");
+  background-size: cover;
+}
+
 
 .main-panel .content-wrapper .star-color {
   color: #fdb82c;

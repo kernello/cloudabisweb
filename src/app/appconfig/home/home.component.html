@@ -1,9 +1,9 @@
 <div class="content-wrapper pb-0">
     <div class="page-header flex-wrap">
       <div class="header-left">
-        <button class="btn btn-primary mb-2 mb-md-0 me-2"> App Configuration </button>
+        <!-- <button class="btn btn-primary mb-2 mb-md-0 me-2"> App Configuration </button>
         <button class="btn btn-outline-primary bg-white mb-2 mb-md-0" [routerLink]="['/home/dashboard']"
-          routerLinkActive="active"> Back To Home </button>
+          routerLinkActive="active"> Back To Home </button> -->
       </div>
   
       <nav aria-label="breadcrumb">
@@ -22,10 +22,11 @@
               <div class="row">
                 <div class="header-left text-left">
                   <h4 class="card-title">Application Configuration</h4>
-                  <p class="card-description">Setup your application configuration for FingerPrint, Face, Iris,
+                  <!-- <p class="card-description">Setup your application configuration for FingerPrint, Face, Iris,
                     FingerVein,
                     or
-                    Multimodality Engine.</p>
+                    Multimodality Engine.</p> -->
+                    <p class="card-description">Setup your application configuration for {{isV12? 'FingerPrint, Face, Iris, and Multimodality Engine':'FingerVein'}}.</p>
                 </div>
                 <div class="header-right text-right ">
   
