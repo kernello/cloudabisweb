@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+ matching.service.cloudabisweb:
+    image:  #docker image or other image
+    container_name: dev_portal_4.0.3.1
+    build: .
+    environment:
+     NODE_ENV: development
+    ports:
+      - 8090:8090
+    volumes:
+      - /matching.service.cloudabisweb/application/config/nginx.conf:/app/nginx.conf
+    restart: always

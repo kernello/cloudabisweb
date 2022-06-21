@@ -1,0 +1,16 @@
+version: '3.5' # We use version 3.5 syntax
+
+services: # Here we define our service(s)
+  matching.service.cloudabisweb: # The name of the service
+    image:  #docker image or other image
+    container_name: prod_cloudabisweb_6.0.0.1  # Container name
+    build:  # Location of our Dockerfile
+      context: .
+      dockerfile: Dockerfile
+    environment:
+     NODE_ENV: production
+    volumes: # Volume binding
+      - './:/app' 
+    ports: 
+      - '7090:7090' # Port mapping
+    restart: always

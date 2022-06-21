@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  matching.service.cloudabisweb:
+    image: #docker image or other image
+    build:
+      context: .
+      dockerfile: Dockerfile

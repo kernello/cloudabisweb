@@ -36,6 +36,4 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-docker-compose.yml
-docker-compose-deployment.prod.yml
-docker-compose-deployment.dev.yml
+
