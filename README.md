@@ -21,7 +21,7 @@ CloudABIS Mathcing Service Demo application intended to give the practical appro
   help of our CloudScanr capture tool or customer's own capture tool if they have already used at their side.  
 - Secondly, Consume the CloudABIS Matching service APIs, which consists of several Bio/Non-bio api verbs or methods (IsRegister, Register, Identify, Verify, Update, ChangeID, and DeleteID or  
   RemoveID). In one click, biometric capture tool would be prompted in front of user (of course if our own capture tool: CloudScanr or customer capture device already installed and device settings
-  already done), then it will instructs and capture user biometric data and will send to the respective service (Register, Identify, Verify, Update, ChangeID) and will come back with respective service wise response. Logically, For IsRegister, ChangedID, and DeleteID or RemoveID services will not be required to have biometric capture and data, since these are tohgether called non-biometric operations in our cloud-based solution. [a link] (https://github.com/user/repo/blob/branch/other_file.md)
+  already done), then it will instructs and capture user biometric data and will send to the respective service (Register, Identify, Verify, Update, ChangeID) and will come back with respective service wise response. Logically, For IsRegister, ChangedID, and DeleteID or RemoveID services will not be required to have biometric capture and data, since these are tohgether called non-biometric operations in our cloud-based solution. [![Angular](https://img.shields.io/npm/v/angular.svg)]
 
 
 Features:
