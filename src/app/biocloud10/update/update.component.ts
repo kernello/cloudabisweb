@@ -362,7 +362,7 @@ export class UpdateComponent implements OnInit {
   }
 
   update() {
-    this.spinner.show('spinrAllModules');
+    this.spinner.show('updateLoading');
     this.prepareRegRequestModel();
     try {
       this.v10Service
@@ -371,16 +371,16 @@ export class UpdateComponent implements OnInit {
         .subscribe({
           next: (response: BaseBioResV10Model) => {
             if (response.isSuccess) {
-              this.spinner.hide('spinrAllModules');
+              this.spinner.hide('updateLoading');
               this.alertService.info(response.message);
             } else {
-              this.spinner.hide('spinrAllModules');
+              this.spinner.hide('updateLoading');
               this.alertService.warning(response.message);
               return;
             }
           },
           error: (error) => {
-            this.spinner.hide('spinrAllModules');
+            this.spinner.hide('updateLoading');
             this.notifyService.showError(
               error.message,
               MessageConstants.BIOCLOUD_V10_UPDATE_ERROR_TITLE
@@ -389,7 +389,7 @@ export class UpdateComponent implements OnInit {
           },
         });
     } catch (error) {
-      this.spinner.hide('spinrAllModules');
+      this.spinner.hide('updateLoading');
       this.notifyService.showError(
         error.message,
         MessageConstants.GENERAL_ERROR_TITLE

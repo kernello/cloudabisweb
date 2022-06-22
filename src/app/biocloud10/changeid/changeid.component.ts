@@ -241,7 +241,7 @@ export class ChangeidComponent implements OnInit {
 
 
   onSubmit() {
-    this.spinner.show('spinrAllModules');
+    this.spinner.show('changeIdLoading');
     // stop here if form is invalid
     if (this.bioCloudChangeIdForm.invalid) {
       return;
@@ -256,16 +256,16 @@ export class ChangeidComponent implements OnInit {
           next: (response: BaseBioResV10Model) => {
             
             if (response.isSuccess) {
-              this.spinner.hide('spinrAllModules');
+              this.spinner.hide('changeIdLoading');
               this.alertService.info(response.message);
             } else {
-              this.spinner.hide('spinrAllModules');
+              this.spinner.hide('changeIdLoading');
               this.alertService.warning(response.message);
               return;
             }
           },
           error: (error) => {
-            this.spinner.hide('spinrAllModules');
+            this.spinner.hide('changeIdLoading');
             this.notifyService.showError(
               error.message,
               MessageConstants.BIOCLOUD_V10_CHANGEID_ERROR_TITLE
@@ -274,7 +274,7 @@ export class ChangeidComponent implements OnInit {
           },
         });
     } catch (error) {
-      this.spinner.hide('spinrAllModules');
+      this.spinner.hide('changeIdLoading');
       this.notifyService.showError(
         error.message,
         MessageConstants.GENERAL_ERROR_TITLE

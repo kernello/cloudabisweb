@@ -385,7 +385,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    this.spinner.show('spinrAllModules');
+    this.spinner.show('regLoading');
     this.prepareRegRequestModel();
     try {
       this.v12Service
@@ -394,16 +394,16 @@ export class RegisterComponent implements OnInit {
         .subscribe({
           next: (response: BioServiceResponse) => {
             if (response.isSuccess) {
-              this.spinner.hide('spinrAllModules');
+              this.spinner.hide('regLoading');
               this.alertService.info(response.message);
             } else {
-              this.spinner.hide('spinrAllModules');
+              this.spinner.hide('regLoading');
               this.alertService.warning(response.message);
               return;
             }
           },
           error: (error) => {
-            this.spinner.hide('spinrAllModules');
+            this.spinner.hide('regLoading');
             this.notifyService.showError(
               error.message,
               MessageConstants.BIOCLOUD_V12_REG_ERROR_TITLE
@@ -412,7 +412,7 @@ export class RegisterComponent implements OnInit {
           },
         });
     } catch (error) {
-      this.spinner.hide('spinrAllModules');
+      this.spinner.hide('regLoading');
       this.notifyService.showError(
         error.message,
         MessageConstants.GENERAL_ERROR_TITLE

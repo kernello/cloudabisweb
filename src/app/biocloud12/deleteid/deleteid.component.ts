@@ -206,7 +206,7 @@ export class DeleteidComponent implements OnInit {
 
 
   onSubmit() {
-    this.spinner.show('spinrAllModules');
+    this.spinner.show('deleteLoading');
 
     // stop here if form is invalid
     if (this.bioCloudDeleteIdForm.invalid) {
@@ -221,16 +221,16 @@ export class DeleteidComponent implements OnInit {
         .subscribe({
           next: (response: BioServiceResponse) => {
             if (response.isSuccess) {
-              this.spinner.hide('spinrAllModules');
+              this.spinner.hide('deleteLoading');
               this.alertService.info(response.message);
             } else {
-              this.spinner.hide('spinrAllModules');
+              this.spinner.hide('deleteLoading');
               this.alertService.warning(response.message);
               return;
             }
           },
           error: (error) => {
-            this.spinner.hide('spinrAllModules');
+            this.spinner.hide('deleteLoading');
             this.notifyService.showError(
               error.message,
               MessageConstants.BIOCLOUD_V12_DELETEID_ERROR_TITLE
@@ -239,7 +239,7 @@ export class DeleteidComponent implements OnInit {
           },
         });
     } catch (error) {
-      this.spinner.hide('spinrAllModules');
+      this.spinner.hide('deleteLoading');
       this.notifyService.showError(
         error.message,
         MessageConstants.GENERAL_ERROR_TITLE
