@@ -99,15 +99,21 @@ We assume that you have finished settings up the APP Configuration page and Clou
          6. Process is same for the `verify` page as well, But the biometric data verification process logic is applied here, so that any misuse of biometric data can be avoided.
          7. `update` page is necessary when it is time to update biometric data. Successful captured data will override the previous biometric data upon update button click. -->
 
- Markup : - [x] Now if you want to check the enrolled id or regsitration id exist then check via `isregister` page.
-          - [x] If you want to delete the existing registration id or enrolled id then you can check `deleteid` page.
-          - [x] In case of changing the existing registration id or enrolled id, then visit `changeid` page.
-          - [x] For face, Iris, FingerPrint, or all modalities identification together, try `identify` page. First input the essential field if it requires. According to the device settings in      
-                CloudScanr™ and corresponding device connected to the main operating device (ex. laptop, desktop), Hitting the capture button, which will then initiate and prompt capture window. For face, iris, fingerprint, or all, respective device will be prompted. After successful capture, you can click the identify button to check the capture(biometric) data for cloud-based matching service. If previous data is found comparing the data you just sent via button click, then there will be successful message will be shown. Otherwise logical message will be shown.
-          - [x] In `register` page, input the necessary field to get the biometric registration done. Here also you will need to capture and register the biometric data. Process is similar to 
-                identify.
-          - [x] Process is same for the `verify` page as well, But the biometric data verification process logic is applied here, so that any misuse of biometric data can be avoided.
-          - [x] `update` page is necessary when it is time to update biometric data. Successful captured data will override the previous biometric data upon update button click.
+  - Now if you want to check the enrolled id or regsitration id exist then check via `isregister` page.
+
+  - If you want to delete the existing registration id or enrolled id then you can check `deleteid` page.
+
+  - In case of changing the existing registration id or enrolled id, then visit `changeid` page.
+
+  - For face, Iris, FingerPrint, or all modalities identification together, try `identify` page. First input the essential field if it requires. According to the device settings in      
+    CloudScanr™ and corresponding device connected to the main operating device (ex. laptop, desktop), Hitting the capture button, which will then initiate and prompt capture window. For face, iris, fingerprint, or all, respective device will be prompted. After successful capture, you can click the identify button to check the capture(biometric) data for cloud-based matching service. If previous data is found comparing the data you just sent via button click, then there will be successful message will be shown. Otherwise logical message will be shown.
+
+  - In `register` page, input the necessary field to get the biometric registration done. Here also you will need to capture and register the biometric data. Process is similar to 
+    identify.
+
+  - Process is same for the `verify` page as well, But the biometric data verification process logic is applied here, so that any misuse of biometric data can be avoided.
+  
+  - `update` page is necessary when it is time to update biometric data. Successful captured data will override the previous biometric data upon update button click.
 
 
 ## Dockrising (Containerising ) Application on NGINX Server
