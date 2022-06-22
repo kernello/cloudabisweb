@@ -18,10 +18,10 @@ We will build docker image in multi build fashion  -->
 CloudABIS Mathcing Service Demo application intended to give the practical approach to the end user of how our Cloud based biometric soilution works, which initially starts from:
 
 - Firstly, biometric data (FingerPrint, Face, Iris, or combination of any 2 or all 3 among these modalities, and single isolated modality, which is FingerVein) capturing procedure with the 
-  help of our CloudScanr capture tool or customer's own capture tool if they have already used at their side.  
+  help of our CloudScanr™ capture tool [x64](https://kernello-scanr.s3.amazonaws.com/4.1.12/CloudScanrClient-Installer-4.1.12(x64).exe) [x86](https://kernello-scanr.s3.amazonaws.com/4.1.12/CloudScanrClient-Installer-4.1.12(x64).exe) or customer's own capture tool if they have already used at their side. Checkout our CloudScanr™ [docs](https://bioplugin.cloudabis.com/v12/api/docs/Ultimate-document-of-CloudScanr-4.3.27.pdf) for more information. Also visit our Matching Service solution [portal](https://identity.cloudabis.com/) 
 - Secondly, Consume the CloudABIS Matching service APIs, which consists of several Bio/Non-bio api verbs or methods (IsRegister, Register, Identify, Verify, Update, ChangeID, and DeleteID or  
   RemoveID). In one click, biometric capture tool would be prompted in front of user (of course if our own capture tool: CloudScanr or customer capture device already installed and device settings
-  already done), then it will instructs and capture user biometric data and will send to the respective service (Register, Identify, Verify, Update, ChangeID) and will come back with respective service wise response. Logically, For IsRegister, ChangedID, and DeleteID or RemoveID services will not be required to have biometric capture and data, since these are tohgether called non-biometric operations in our cloud-based solution. [![Angular](https://img.shields.io/npm/v/angular.svg)]
+  already done), then it will instructs and capture user biometric data and will send to the respective service (Register, Identify, Verify, Update, ChangeID) and will come back with respective service wise response. Logically, For IsRegister, ChangedID, and DeleteID or RemoveID services will not be required to have biometric capture and data, since these are tohgether called non-biometric operations in our cloud-based solution. 
 
 
 Features:
