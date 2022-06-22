@@ -35,13 +35,13 @@ Features:
 - [Install](#install)
 - [How to use it](#how-to-use-it)
 - [Dockrising (Containerising ) Application on NGINX Server](#dockerising-app-on-nginx)
-- [Methods](#methods)
 - [Other](#events)
 - [License](#license)
 
 ## Install
 
-- ### Clone the application from github ([link](https://github.com/kernello/cloudabisweb.git))
+- ### Clone the application from github 
+([link](https://github.com/kernello/cloudabisweb.git))
 
 - ### With npm
 
@@ -58,9 +58,11 @@ npm run dev:build
 npm run dev
 ```
 
-- ### Login with any credential (for example username: admin, password: admin)
+- ### Login with any credential 
+(for example username: admin, password: admin)
 
-- ### Go to App Configuration page, where configuration switch button is switched to V10. If you want to create the configuration for v10 biometric operations, then put the necessary values into the page fields. For example, see below.
+- ### V10 APP Configuration
+Go to App Configuration page where configuration switch button is switched to V10. If you want to create the configuration for v10 biometric operations, then put the necessary values into the page fields. For example, see below.
 
 ```html
 API Url: https://demo-fv.cloudabis.com/v1
@@ -70,7 +72,8 @@ Secret Key: Qi8OWeaWfZpkXMDrEq5wyppWyug=
 ```
 or
 
-- ### If you want to create the configuration for v12 biometric operations, then put the necessary values into the page fields. For example, see below.
+- ### V12 APP Configuration
+If you want to create the configuration for v12 biometric operations, then put the necessary values into the page fields. For example, see below.
 
 ```html
 API Base URL: https://dev-bioplugin.cloudabis.com/v12
@@ -78,41 +81,32 @@ Client API Key: b9a3d9ba5c774cfc92182d2743ef70ab
 Client Key: C7875FBEBE2C4A1AA8F64192F71D160F
 ```
 
-- ### Once App Configuration is done, then yor are good to go to use respective version-wise operations. If you want to configure both versions but set the default configuration (either v12 or v10) then based on the default-set configuration, you will be able to use that configuration related operations. For example, if you configure App Configurationn for v10 and v12 both but set the configuration for v12 lastly. then you will be able to use v12 biomertic operations. For using v10 operations, you have switch from the v12 configuration to v10 configuration.
+- ### APP Configuration Explanation
+Once App Configuration is done, then yor are good to go to use respective version-wise operations. If you want to configure both versions but set the default configuration (either v12 or v10) then based on the default-set configuration, you will be able to use that configuration related operations. For example, if you configure App Configurationn for v10 and v12 both but set the configuration for v12 lastly. then you will be able to use v12 biomertic operations. For using v10 operations, you have switch from the v12 configuration to v10 configuration.
+
+- ### Setting CloudScanr™ Capture tool configuration
+Both v10 and v12 menus have 7 user interfaces each. Among them, for the biometric operations such as Register, Identify, Verify, and Update there are 4 UIs exist. These operations needs to have the biometric data to test our Cloud-based Mathcing Service. Apart from them, there are 3 non-biometric UIs are dedicated for the DeleteID, ChangeID, and IsRegister. In case of capturing biometric data, If you want to use our relaible and flawless capture tool CloudScanr™ then click on [x64](https://kernello-scanr.s3.amazonaws.com/4.1.12/CloudScanrClient-Installer-4.1.12(x64).exe) or [x86](https://kernello-scanr.s3.amazonaws.com/4.1.12/CloudScanrClient-Installer-4.1.12(x64).exe) bit installer. To configure, please have a look at the CloudScanr™ [documentation](https://bioplugin.cloudabis.com/v12/api/docs/Ultimate-document-of-CloudScanr-4.3.27.pdf).<br>
+
+Once installation and device settings are finished(After installation done, if you run CloudScanr™, you will find the details settings and API documentation of CloudScanr™ in the system tray), you have to click and run the API Documentation. The API swagger docuemntation page will be opened in your browser. Now you are fine to continue the process of capturing and testing the biometric operations through the demo application. So, go back to the demo application.<br>
+
+- ### V12 & V10 Operations
+We assume that you have finished settings up the APP Configuration page and CloudScanr™ tool settings. <br>
+Markup : 1. Now if you want to check the enrolled id or regsitration id exist then check via `isregister` page.
+         2. If you want to delete the existing registration id or enrolled id then you can check `deleteid` page.
+         3. In case of changing the existing registration id or enrolled id, then visit `changeid` page.
+         4. For face, Iris, FingerPrint, or all modalities identification together, try `identify` page. First input the essential field if it requires. According to the device settings in CloudScanr™ and corresponding device connected to the main operating device (ex. laptop, desktop), Hitting the capture button, which will then initiate and prompt capture window. For face, iris, fingerprint, or all, respective device will be prompted. After successful capture, you can click the identify button to check the capture(biometric) data for cloud-based matching service. If previous data is found comparing the data you just sent via button click, then there will be successful message will be shown. Otherwise logical message will be shown.
+         5. In `register` page, input the necessary field to get the biometric registration done. Here also you will need to capture and register the biometric data. Process is similar to identify.
+         6. Process is same for the `verify` page as well, But the biometric data verification process logic is applied here, so that any misuse of biometric data can be avoided.
+         7. `update` page is necessary when it is time to update biometric data. Successful captured data will override the previous biometric data upon update button click.
+
 
 ## Dockrising (Containerising ) Application on NGINX Server
 
-Time to build out the Dockerfile! There are a lot of ways we could do this, but today we’ll use a multi-stage process or multi-build fashion:
-
-- *Stage 1:* In Stage 1 we are copying our app code in the “app” folder and installing app dependencies from package.json file and creating production build using Node image.
-- *Stage 2:* In Stage 2 we are using the Nginx server image to create the Nginx server and deploy our app on it by copying build items from `/app/docs` to Nginx server at `/usr/share/Nginx/HTML` 
-   location.
-
-
-
-## Methods
-
-### init
-
-Will detect the current breakpoint and emit `init.bs.breakpoint` event.
-
-It'll add a listener on the window `resize` event and emit `new.bs.breakpoint` event.
-
-### detectBreakpoint
-
-Detect the current breakpoint and return it.
-
-### getCurrentBreakpoint
-
-Return the current breakpoint.
+This applciation can be dockerized. It depends on the user needs.
 
 ## Other 
 
-### Create Project, Create Component, Module with Routing, component under module without Test (Sample)
-
-<!-- Emitted just once when `bsBreakpoints.init()` is called. -->
-
-<!-- This event contains the current breakpoint in the [detail](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/detail) attribute in VanillaJS and for those who use jQuery we add a `breakpoint` key in jQuery's events. -->
+### Userful commands and packages 
 Run `npm install -g @angular/cli`\
 Run `ng new cloudabisangwebapp`\
 Run `cd cloudabisangwebapp`\
