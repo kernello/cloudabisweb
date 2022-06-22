@@ -18,7 +18,7 @@ We will build docker image in multi build fashion  -->
 CloudABIS Mathcing Service Demo application intended to give the practical approach to the end user of how our Cloud based biometric soilution works, which initially starts from:
 
 - Firstly, biometric data (FingerPrint, Face, Iris, or combination of any 2 or all 3 among these modalities, and single isolated modality, which is FingerVein) capturing procedure with the 
-  help of our CloudScanr™ capture tool [x64](https://kernello-scanr.s3.amazonaws.com/4.1.12/CloudScanrClient-Installer-4.1.12(x64).exe) [x86](https://kernello-scanr.s3.amazonaws.com/4.1.12/CloudScanrClient-Installer-4.1.12(x64).exe) or customer's own capture tool if they have already used at their side. Checkout our CloudScanr™ [docs](https://bioplugin.cloudabis.com/v12/api/docs/Ultimate-document-of-CloudScanr-4.3.27.pdf) for more information. Also visit our Matching Service solution [portal](https://identity.cloudabis.com/) 
+  help of our CloudScanr™ capture tool [x64](https://kernello-scanr.s3.amazonaws.com/4.1.12/CloudScanrClient-Installer-4.1.12(x64).exe) or [x86](https://kernello-scanr.s3.amazonaws.com/4.1.12/CloudScanrClient-Installer-4.1.12(x64).exe) or customer's own capture tool if they have already used at their side. Checkout our CloudScanr™ [docs](https://bioplugin.cloudabis.com/v12/api/docs/Ultimate-document-of-CloudScanr-4.3.27.pdf) for more information. Also visit our Matching Service solution [portal](https://identity.cloudabis.com/) 
 - Secondly, Consume the CloudABIS Matching service APIs, which consists of several Bio/Non-bio api verbs or methods (IsRegister, Register, Identify, Verify, Update, ChangeID, and DeleteID or  
   RemoveID). In one click, biometric capture tool would be prompted in front of user (of course if our own capture tool: CloudScanr or customer capture device already installed and device settings
   already done), then it will instructs and capture user biometric data and will send to the respective service (Register, Identify, Verify, Update, ChangeID) and will come back with respective service wise response. Logically, For IsRegister, ChangedID, and DeleteID or RemoveID services will not be required to have biometric capture and data, since these are tohgether called non-biometric operations in our cloud-based solution. 
@@ -26,10 +26,9 @@ CloudABIS Mathcing Service Demo application intended to give the practical appro
 
 Features:
 
-- XXXXXX
-- XXXX XXXXX *dependencies* XXX **jQuery**
-- **Can** XXX XXX XXXX XXX XXXX
-- XXXXX XXXX XXXXX XX XXXX XXXXXXX
+- CloudScanr (Capture tool) API service. 
+- CloudABIS Matching Service Version *v12* (FingerPrint, Face, Iris) and **v10** (FingerVein) engine supported Services.
+- Configuration( **appconfiguration**) for separate *v12* and *v10* biometric and non-biometric operations.
 
 ## Table of contents
 
@@ -42,21 +41,44 @@ Features:
 
 ## Install
 
-### With npm or yarn
+- ### Clone the application from github ([link](https://github.com/kernello/cloudabisweb.git))
+
+- ### With npm
 
 ```sh
-npm install bs-breakpoints --save
-
-// yarn
-yarn add bs-breakpoints
+npm install --save
 ```
 
-### CDN
+## How to use it
 
-CDN | Link
------------- | -------------
-jsDelivr | [`https://cdn.jsdelivr.net/npm/bs-breakpoints/dist/bs-breakpoints.js`](https://cdn.jsdelivr.net/npm/bs-breakpoints/dist/bs-breakpoints.js)
-jsDelivr, minified | [`https://cdn.jsdelivr.net/npm/bs-breakpoints/dist/bs-breakpoints.min.js`](https://cdn.jsdelivr.net/npm/bs-breakpoints/dist/bs-breakpoints.min.js)
+- ### Run
+
+```sh
+npm run dev:build
+npm run dev
+```
+
+- ### Login with any credential (for example username: admin, password: admin)
+
+- ### Go to App Configuration page, where configuration switch button is switched to V10. If you want to create the configuration for v10 biometric operations, then put the necessary values into the page fields. For example, see below.
+
+```html
+API Url: https://demo-fv.cloudabis.com/v1
+APP Key: c98138a3cf0d4cb7979646318e2c4b5d
+Customer Key: C50E503404FC4698BC8C827688E88B4A
+Secret Key: Qi8OWeaWfZpkXMDrEq5wyppWyug=
+```
+or
+
+- ### If you want to create the configuration for v12 biometric operations, then put the necessary values into the page fields. For example, see below.
+
+```html
+API Base URL: https://dev-bioplugin.cloudabis.com/v12
+Client API Key: b9a3d9ba5c774cfc92182d2743ef70ab
+Client Key: C7875FBEBE2C4A1AA8F64192F71D160F
+```
+
+- ### Once App Configuration is done, then yor are good to go to use respective version-wise operations. If you want to configure both versions but set the default configuration (either v12 or v10) then based on the default-set configuration, you will be able to use that configuration related operations. For example, if you configure App Configurationn for v10 and v12 both but set the configuration for v12 lastly. then you will be able to use v12 biomertic operations. For using v10 operations, you have switch from the v12 configuration to v10 configuration.
 
 ## Dockrising (Containerising ) Application on NGINX Server
 
@@ -66,34 +88,7 @@ Time to build out the Dockerfile! There are a lot of ways we could do this, but 
 - *Stage 2:* In Stage 2 we are using the Nginx server image to create the Nginx server and deploy our app on it by copying build items from `/app/docs` to Nginx server at `/usr/share/Nginx/HTML` 
    location.
 
-## How to use it
 
-You should wait for the document ready event and call the `init` method to detect breakpoint changes.
-We expose one global variable available everywhere: `bsBreakpoints`
-
-Vanilla JS
-```js
-document.addEventListener('DOMContentLoaded', function () {
-  bsBreakpoints.init()
-})
-```
-
-With jQuery
-```js
-$(document).ready(function () {
-  bsBreakpoints.init()
-})
-```
-
-### Use it with npm
-
-```js
-import bsBreakpoints from 'bs-breakpoints'
-```
-
-For more examples check out [this file](https://github.com/Johann-S/bs-breakpoints/blob/master/tests/index.html).
-
-This library is UMD ready so you can use it everywhere.
 
 ## Methods
 
