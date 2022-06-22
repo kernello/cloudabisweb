@@ -164,5 +164,10 @@ export class RouteService {
     this.router.navigateByUrl(redirectTo);
   }
 
+  openUrlInNewTab(url:string) {
+    window.open(url, '_blank').focus();
+  }
+  
+
   
 }

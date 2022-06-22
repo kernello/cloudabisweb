@@ -264,7 +264,7 @@ export class IsRegisterComponent implements OnInit, OnDestroy {
   }
 
   cancel() {
-    this.routeService.routeToPage(CloudABISMatchingRoutesConstants.BIOCLOUD_V12_HOME_ROUTE);
+    this.routeService.routeToPage(HomeRoutesConstants.HOME_DASHBOARD_URL);
   }
 
    removeResult(className){

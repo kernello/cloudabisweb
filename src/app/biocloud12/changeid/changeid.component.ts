@@ -264,7 +264,7 @@ export class ChangeidComponent implements OnInit {
   }
 
   cancel() {
-    this.routeService.routeToPage(CloudABISMatchingRoutesConstants.BIOCLOUD_V10_HOME_ROUTE);
+    this.routeService.routeToPage(HomeRoutesConstants.HOME_DASHBOARD_URL);
   }
 
    removeResult(className){

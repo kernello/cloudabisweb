@@ -1,77 +1,44 @@
 <div class="content-wrapper pb-0">
     <div class="page-header flex-wrap">
       <div class="header-left">
-        <!-- <button class="btn btn-primary mb-2 mb-md-0 me-2"> Create new document </button>
-        <button class="btn btn-outline-primary bg-white mb-2 mb-md-0"> Import documents </button> -->
       </div>
       <div class="header-right d-flex flex-wrap mt-2 mt-sm-0">
         <div class="d-flex align-items-center">
-          <!-- <a href="#">
-            <p class="m-0 pe-3">Home</p>
-          </a> -->
           <a class="card-title mb-0" href="#" style="border: none;">
             <p class="m-0">Home</p>
           </a>
         </div>
-        <!-- <button type="button" class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
-          <i class="mdi mdi-plus-circle"></i> Demo Biometric </button> -->
       </div>
     </div>
     <!-- first row starts here -->
     <div class="row">
-      <!-- <div class="col-xl-9 stretch-card grid-margin">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex justify-content-between flex-wrap">
-              <div>
-                <div class="card-title mb-0">Sales Revenue</div>
-                <h3 class="font-weight-bold mb-0">$32,409</h3>
-              </div>
-              <div>
-                <div class="d-flex flex-wrap pt-2 justify-content-between sales-header-right">
-                  <div class="d-flex me-5">
-                    <button type="button" class="btn btn-social-icon btn-outline-sales">
-                      <i class="mdi mdi-inbox-arrow-down"></i>
-                    </button>
-                    <div class="ps-2">
-                      <h4 class="mb-0 font-weight-semibold head-count"> $8,217 </h4>
-                      <span class="font-10 font-weight-semibold text-muted">TOTAL SALES</span>
-                    </div>
-                  </div>
-                  <div class="d-flex me-3 mt-2 mt-sm-0">
-                    <button type="button" class="btn btn-social-icon btn-outline-sales profit">
-                      <i class="mdi mdi-cash text-info"></i>
-                    </button>
-                    <div class="ps-2">
-                      <h4 class="mb-0 font-weight-semibold head-count"> 2,804 </h4>
-                      <span class="font-10 font-weight-semibold text-muted">TOTAL PROFIT</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <p class="text-muted font-13 mt-2 mt-sm-0"> Your sales monitoring dashboard template. <a class="text-muted font-13" href="#"><u>Learn more</u></a>
-            </p>
-            <div class="flot-chart-wrapper">
-              <div id="flotChart" class="flot-chart">
-                <canvas class="flot-base"></canvas>
-              </div>
+      <div class="col-xl-4 stretch-card grid-margin" *ngFor="let ad of advertisements">
+        <div class="{{ad.AD_BACKGROUND_IMG_CLASS}}">
+          <div class="card-body d-flex align-items-center">
+            <div class="text-white">
+              <img src="{{ad.AD_IMG_SRC}}" alt="{{ad.AD_IMG_ALT}}">
+              <h1 class="font-20 font-weight-semibold mb-0"> {{ad.AD_TITLE_PART_1}}</h1>
+              <h1 class="font-20 font-weight-semibold">{{ad.AD_TITLE_PART_2}}</h1>
+              <p>{{ad.AD_DESCRIPTION}}</p>
+              <p class="font-10 font-weight-semibold"> {{ad.AD_COMPANY_MSG}} </p>
+              <img src="{{ad.AD_LOGO_IMG_SRC}}" alt="{{ad.AD_LOGO_ALT}}"> 
+              <button class="btn bg-white font-12" (click)="open(ad.AD_LINK)">{{ad.AD_BUTTON_TEXT}}</button>
             </div>
           </div>
         </div>
-      </div> -->
-      <div class="col-xl-4 stretch-card grid-margin">
+      </div>
+      
+      <!-- <div class="col-xl-4 stretch-card grid-margin">
         <div class="card card-ad-01-img">
           <div class="card-body d-flex align-items-center">
             <div class="text-white">
-              <img src="https://www.m2sys.com/wp-content/uploads/custom-images/v3-home/flag-japan.png" alt="flag-japan">
+              <img src="../../assets/images/flag-japan.png" alt="flag-japan">
               <h1 class="font-20 font-weight-semibold mb-0"> Blood Plasma for</h1>
               <h1 class="font-20 font-weight-semibold">Cancer Therapy!</h1>
               <p>For the last 13 years, we have helped Takeda to streamline the blood plasma collection process for nearly 1 million donors in 200 geographically distributed locations, saving them millions of dollars.</p>
               <p class="font-10 font-weight-semibold"> Enjoy the advantage of premium. </p>
-              <img src="https://www.m2sys.com/wp-content/uploads/custom-images/v3-home/takeda-logo.png" alt="takeda-logo"> 
-              <!-- <button class="btn bg-white font-12">Download Case Study</button> -->
-              <a class="btn bg-white font-12" href="https://www.m2sys.com/blog/case-study-on-takeda-biometric-blood-donor-identification/">Download Case Study</a>
+              <img src="../../assets/images/takeda-logo.png" alt="takeda-logo"> 
+              <button class="btn bg-white font-12" (click)="open(advertisements[0].ID)">Download Case Study</button>
             </div>
           </div>
         </div>
@@ -80,13 +47,12 @@
         <div class="card card-ad-02-img">
           <div class="card-body d-flex align-items-center">
             <div class="text-white">
-              <img src="https://www.m2sys.com/wp-content/uploads/custom-images/v3-home/flag-turkish.png" alt="flag-turkish">
+              <img src="../../assets/images/flag-turkish.png" alt="flag-turkish">
               <h1 class="font-20 font-weight-semibold mb-0"> Turkish</h1>
               <h1 class="font-20 font-weight-semibold">National ID!</h1>
               <p>80 million Turkish citizens received a new digital ID cards. To prevent identity fraud, M2SYS built a massive identity de-duplication system, which runs on 2 clusters of 40 massive parallel servers with Oracle & EMC as the data stack.</p>
               <p class="font-10 font-weight-semibold"> Enjoy the advantage of premium. </p>
-              <img src="https://www.m2sys.com/wp-content/uploads/custom-images/v3-home/id-card-icon.png" alt="id-card-icon"> 
-              <!-- <button class="btn bg-white font-12">Download Case Study</button> -->
+              <img src="../../assets/images/id-card-icon.png" alt="id-card-icon"> 
               <a class="btn bg-white font-12" href="https://www.m2sys.com/blog/download-turkish-national-id-project/">Download Case Study</a>
             </div>
           </div>
@@ -96,19 +62,18 @@
         <div class="card card-img">
           <div class="card-body d-flex align-items-center">
             <div class="text-white">
-              <img src="https://www.m2sys.com/wp-content/uploads/custom-images/CloudABIS_logo_m2sys.png" alt="identity-cloudabis">
+              <img src="../../assets/images/CloudABIS_logo_m2sys.png" alt="identity-cloudabis">
               <h1 class="font-20 font-weight-semibold mb-0"> CloudABIS™</h1>
               <h1 class="font-20 font-weight-semibold">Cloud-Based ABIS System</h1>
               <p>Built with nearly 20 years of experience in large-scale biometric technology projects, CloudABIS™ is a superscalar, biometrics-as-a-service (BaaS) matching system that removes the burden & cost associated with building and maintaining a reliable biometric identification system.</p>
               <p class="font-10 font-weight-semibold"> Enjoy the advantage of our cloud-based biometric service. </p>
-              <img src="../../assets/images/m2sys-logo.png" alt="id-card-icon"> 
-              <!-- <button class="btn bg-white font-12">Download Case Study</button> -->
+              <img src="../../assets/images/m2sys-logo.png" alt="identity-m2sys-icon"> 
               <a class="btn bg-white font-12" href="https://identity.cloudabis.com/">Signup For Biometric Matching Service</a>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- chart row starts here -->
     
     <div class="row" style="background-image: url('../../assets/images/egov-section.png');background-size: cover;">
@@ -118,13 +83,13 @@
             <div class="d-flex justify-content-between">
               <div class="card-title"> Prison Management
                 System 
-                <small class="d-block text-muted"><img src="https://www.m2sys.com/wp-content/uploads/custom-images/v3-home/Prison-Management-icon.png" alt="id-card-icon"></small>
+                <small class="d-block text-muted"><img src="../../assets/images/Prison-Management-icon.png" alt="id-card-icon"></small>
               </div>
               <div class="d-flex text-muted font-20">
               </div>
             </div>
             <span class="text-muted font-13" style="font-weight:bold;">Featured Solution</span><br>
-            <img src="https://www.m2sys.com/wp-content/uploads/custom-images/v3-home/Prison-Management.jpg"  alt="id-card-icon">
+            <img src="../../assets/images/Prison-Management.jpg"  alt="id-card-icon">
           </div>
         </div>
       </div>
@@ -133,13 +98,13 @@
           <div class="card-body">
             <div class="d-flex justify-content-between">
               <div class="card-title"> Law Enforcement Management System 
-                <small class="d-block text-muted"><img src="https://www.m2sys.com/wp-content/uploads/custom-images/v3-home/Law-Enforcement-Management-System-icon.png" alt="id-card-icon"></small>
+                <small class="d-block text-muted"><img src="../../assets/images/Law-Enforcement-Management-System-icon.png" alt="id-card-icon"></small>
               </div>
               <div class="d-flex text-muted font-20">
               </div>
             </div>
             <span class="text-muted font-13" style="font-weight:bold;">Featured Solution</span><br>
-            <img src="https://www.m2sys.com/wp-content/uploads/custom-images/v3-home/Law-Enforcement.jpg"  alt="id-card-icon">
+            <img src="../../assets/images/Law-Enforcement.jpg"  alt="id-card-icon">
           </div>
         </div>
       </div>
@@ -148,13 +113,13 @@
           <div class="card-body">
             <div class="d-flex justify-content-between">
               <div class="card-title"> City & Municipality Digitization 
-                <small class="d-block text-muted"><img src="https://www.m2sys.com/wp-content/uploads/custom-images/v3-home/smart-icon.png" alt="id-card-icon"></small>
+                <small class="d-block text-muted"><img src="../../assets/images/smart-icon.png" alt="id-card-icon"></small>
               </div>
               <div class="d-flex text-muted font-20">
               </div>
             </div>
             <span class="text-muted font-13" style="font-weight:bold;">Featured Solution</span><br>
-            <img src="https://www.m2sys.com/wp-content/uploads/custom-images/v3-home/samrt-city.jpg"  alt="id-card-icon">
+            <img src="../../assets/images/samrt-city.jpg"  alt="id-card-icon">
           </div>
         </div>
       </div>
@@ -168,10 +133,10 @@
               <h1 class="font-20 font-weight-semibold mb-0"> Banking & Financial</h1>
               <p>Millions of people are accessing their funds using our account security system in many countries. Secure identity protection in this industry is critical; our system supports the Know Your Customer (KYC) banking policy to prevent unauthorized transactions and safeguard financial accounts.</p>
               
-              <img src="https://m2sys.com/wp-content/uploads/custom-images/v3-home/banking-arig-bank.png" alt="id-card-icon"> 
-              <img src="https://m2sys.com/wp-content/uploads/custom-images/v3-home/banking-bank-of-africa.png" alt="id-card-icon">
-              <img src="https://m2sys.com/wp-content/uploads/custom-images/v3-home/banking-unibank.png" alt="id-card-icon">
-              <img src="https://m2sys.com/wp-content/uploads/custom-images/v3-home/banking-grupo-monge.png" alt="id-card-icon">
+              <img src="../../assets/images/banking-arig-bank.png" alt="id-card-icon"> 
+              <img src="../../assets/images/banking-bank-of-africa.png" alt="id-card-icon">
+              <img src="../../assets/images/banking-unibank.png" alt="id-card-icon">
+              <img src="../../assets/images/banking-grupo-monge.png" alt="id-card-icon">
             </div>
           </div>
         </div>
@@ -182,16 +147,16 @@
           <div class="card-body d-flex align-items-center">
             
             <div class="text-white">
-              <img src="https://m2sys.com/wp-content/uploads/custom-images/v3-home/prevent-releasing-wrong-inmate-1.png" alt="id-card-icon"> 
-            <img src="https://m2sys.com/wp-content/uploads/custom-images/v3-home/prevent-releasing-wrong-inmate-2.png" alt="id-card-icon"> 
-            <img src="https://m2sys.com/wp-content/uploads/custom-images/v3-home/prevent-releasing-wrong-inmate-3.png" alt="id-card-icon"> <br>
+              <img src="../../assets/images/prevent-releasing-wrong-inmate-1.png" alt="id-card-icon"> 
+            <img src="../../assets/images/prevent-releasing-wrong-inmate-2.png" alt="id-card-icon"> 
+            <img src="../../assets/images/prevent-releasing-wrong-inmate-3.png" alt="id-card-icon"> <br>
               <h1 class="font-20 font-weight-semibold mb-0"> We prevent releasing the wrong inmate</h1>
               <p>Over 200 jails in the USA use our biometric system to identify inmates during entry and exit. Many large Jail Management Software (JMS) providers embedded our solution into their offerings.</p>
               
-              <img src="https://m2sys.com/wp-content/uploads/custom-images/v3-home/central-square-logo.png" alt="id-card-icon"> 
-              <img src="https://m2sys.com/wp-content/uploads/custom-images/v3-home/southern-software-logo.png" alt="id-card-icon">
-              <img src="https://m2sys.com/wp-content/uploads/custom-images/v3-home/tyler-logo.png" alt="id-card-icon">
-              <img src="https://m2sys.com/wp-content/uploads/custom-images/v3-home/gtl-logo.png" alt="id-card-icon">
+              <img src="../../assets/images/central-square-logo.png" alt="id-card-icon"> 
+              <img src="../../assets/images/southern-software-logo.png" alt="id-card-icon">
+              <img src="../../assets/images/tyler-logo.png" alt="id-card-icon">
+              <img src="../../assets/images/gtl-logo.png" alt="id-card-icon">
             </div>
           </div>
         </div>
