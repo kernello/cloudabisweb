@@ -35,6 +35,7 @@ import {
   Common,
   MessageConstants,
   AnimatedLoaderConstants,
+  Advertisements
 } from '@app/shared/constants';
 
 import {
@@ -84,7 +85,11 @@ import { WhiteSpaceValidator } from '@app/shared/validations';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private spinner: NgxSpinnerService, private titleService: Title, private scriptService: ScriptService) { 
+  get advertisements() {
+    return Advertisements;
+  }
+
+  constructor(private spinner: NgxSpinnerService, private titleService: Title, private scriptService: ScriptService, private routeService: RouteService) { 
     //this.scriptService.loadScripts();
     this.spinner.show('spinrAllModules');
   }
@@ -93,6 +98,10 @@ export class DashboardComponent implements OnInit {
     this.titleService.setTitle(Common.HOME_TITLE);
     this.scriptService.enableLayout();
     setTimeout(() => (this.spinner.hide('spinrAllModules')), 1000);
+  }
+
+  open(url:string){
+    this.routeService.openUrlInNewTab(url);
   }
 
 }

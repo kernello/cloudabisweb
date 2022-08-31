@@ -13,6 +13,7 @@ export const LoginApiConstants = {
 export const HomeRoutesConstants = {
   DEFAULT_URL: '/',
   HOME_URL: '/home',
+  HOME_DASHBOARD_URL: '/home/dashboard'
 };
 export const APPConfigRoutesConstants = {
   APP_CONFIG_URL: 'appconfig/home',
@@ -701,3 +702,48 @@ export const AbisConstant = {
   Invalid_Grant: 'invalid_grant',
   Unsupported_Grant_Type: 'unsupported_grant_type'
 };
+
+export const Advertisements: any[] =[
+  {
+    ID: 1,
+    AD_BACKGROUND_IMG_CLASS: 'card card-ad-01-img',
+    AD_IMG_SRC: '../../assets/images/flag-japan.png', 
+    AD_IMG_ALT: 'flag-japan',
+    AD_TITLE_PART_1: 'Blood Plasma for',
+    AD_TITLE_PART_2: 'Cancer Therapy!',
+    AD_DESCRIPTION: 'For the last 13 years, we have helped Takeda to streamline the blood plasma collection process for nearly 1 million donors in 200 geographically distributed locations, saving them millions of dollars.',
+    AD_COMPANY_MSG: 'Enjoy the advantage of premium.',
+    AD_LOGO_IMG_SRC: '../../assets/images/takeda-logo.png',
+    AD_LOGO_ALT: 'takeda-logo',
+    AD_LINK: 'https://www.m2sys.com/blog/case-study-on-takeda-biometric-blood-donor-identification/',
+    AD_BUTTON_TEXT: 'Download Case Study'
+  },
+  {
+    ID: 2,
+    AD_BACKGROUND_IMG_CLASS: 'card card-ad-02-img',
+    AD_IMG_SRC: '../../assets/images/flag-turkish.png', 
+    AD_IMG_ALT: 'flag-turkish',
+    AD_TITLE_PART_1: 'Turkish',
+    AD_TITLE_PART_2: 'National ID!',
+    AD_DESCRIPTION: '80 million Turkish citizens received a new digital ID cards. To prevent identity fraud, M2SYS built a massive identity de-duplication system, which runs on 2 clusters of 40 massive parallel servers with Oracle & EMC as the data stack.',
+    AD_COMPANY_MSG: 'Enjoy the advantage of premium.',
+    AD_LOGO_IMG_SRC: '../../assets/images/id-card-icon.png',
+    AD_LOGO_ALT: 'id-card-icon',
+    AD_LINK: 'https://www.m2sys.com/blog/download-turkish-national-id-project/',
+    AD_BUTTON_TEXT: 'Download Case Study'
+  },
+  {
+    ID: 3,
+    AD_BACKGROUND_IMG_CLASS: 'card card-img',
+    AD_IMG_SRC: '../../assets/images/CloudABIS_logo_m2sys.png', 
+    AD_IMG_ALT: 'identity-cloudabis',
+    AD_TITLE_PART_1: 'CloudABIS™',
+    AD_TITLE_PART_2: 'Cloud-Based ABIS System',
+    AD_DESCRIPTION: 'Built with nearly 20 years of experience in large-scale biometric technology projects, CloudABIS™ is a superscalar, biometrics-as-a-service (BaaS) matching system that removes the burden & cost associated with building and maintaining a reliable biometric identification system.',
+    AD_COMPANY_MSG: 'Enjoy the advantage of our cloud-based biometric service.',
+    AD_LOGO_IMG_SRC: '../../assets/images/m2sys-logo.png',
+    AD_LOGO_ALT: 'identity-m2sys-icon',
+    AD_LINK: 'https://identity.cloudabis.com/',
+    AD_BUTTON_TEXT: 'Signup For Biometric Matching Service'
+  }
+]

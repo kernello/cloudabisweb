@@ -158,3 +158,31 @@ dist
 }
 -----------------packagejson ends----------------------------------
 
+---------------------------SSL realted----------------------------------
+https://www.youtube.com/watch?v=OWjVXb7-mSU
+
+certificate.conf
+----------------
+[req]
+default_bits = 2048
+prompt = no
+default_md = sha256
+x509_extensions = v3_req
+distinguished_name = dn
+
+[dn]
+C = IN
+ST = India
+L = India
+O = My Organisation
+OU = My Organisational Unit
+emailAddress = sreemonta@m2sys.com
+CN = localhost
+
+[v3_req]
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1 = localhost
+
+command: openssl req -new -x509 -newkey rsa:2048 -sha256 -nodes -keyout ssl/server.key -days 3560 -out ssl/server.crt -config certificate.cnf
