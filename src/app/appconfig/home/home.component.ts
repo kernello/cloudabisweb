@@ -49,6 +49,7 @@ import {
   ScriptService,
   AlertService,
   NotificationService,
+  BioMiddlewareService
 } from '@app/shared/services';
 
 import {
@@ -114,7 +115,8 @@ export class HomeComponent implements OnInit, OnDestroy  {
    private localStorageService: LocalStorageService,
    private cloudscanrService: CloudscanrService,
    private cookieService: CookieStorageService,
-   private notifyService: NotificationService
+   private notifyService: NotificationService,
+   private bioMiddlewareService: BioMiddlewareService
  ) {
    //this.scriptService.loadScripts();
    this.spinner.show('spinrAllModules');
@@ -158,7 +160,7 @@ export class HomeComponent implements OnInit, OnDestroy  {
    this.deviceNameList = [];
    if (this.isV12) {
      BiometricDeviceList.forEach((item, index) => {
-       if (item.engineName !== Common.FINGER_VEIN && item.engineName !== Common.FINGER_VEIN_FVHT01) {
+       if (item.engineName !== Common.FINGER_VEIN_FVHT01) { //item.engineName !== Common.FINGER_VEIN && 
          this.deviceNameList.push(item);
        }
      });
@@ -371,6 +373,10 @@ export class HomeComponent implements OnInit, OnDestroy  {
          MessageConstants.APP_CONFIG_SAVE_FAILED_TITLE
        );
      }
+     //create token
+     this.isV12? this.bioMiddlewareService.V12CreateTokenFromAppConfig():
+      this.bioMiddlewareService.V10CreateTokenFromAppConfig();
+
    } catch (error) {
      setTimeout(() => {
        this.loading = false;

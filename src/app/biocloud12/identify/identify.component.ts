@@ -94,7 +94,8 @@ import {
   CaptureResponseV12Model,
   BioServiceRequest,
   CaptureImages,
-  CurrentNotification
+  CurrentNotification,
+  Templates
 } from '@app/shared/models';
 import {
   FingerPrintDevices,
@@ -150,6 +151,7 @@ export class IdentifyComponent implements OnInit {
   identifyBtnDisabled = true;
   bioImages: CaptureImages;
   currNotify: CurrentNotification;
+  fvTemplates:Templates;
 
   constructor(
     private spinner: NgxSpinnerService,
@@ -195,7 +197,7 @@ export class IdentifyComponent implements OnInit {
     this.bioMiddlewareService.tokenAuthenticationV12();
     setTimeout(() => this.spinner.hide('spinrAllModules'), 5000);
   }
-
+  
   createForm() {
     this.bioCloudIdentificationForm = this.formBuilder.group({
       captureType: new FormControl('', Validators.required),
@@ -262,6 +264,14 @@ export class IdentifyComponent implements OnInit {
           FaceImageFormat: EnumFaceImageFormat.Jpeg,
           CaptureTimeOut: 180.0,
           CaptureOperationName: EnumCaptureOperationName.IDENTIFY,
+        };
+      } else if (engine === EnumEnginesMapper.FingerVein) {
+        captureReqModel = {
+          DeviceName: this.bioCloudIdentificationForm.controls['deviceName'].value,
+          QuickScan: EnumFeatureMode.Enable,
+          CaptureType: this.bioCloudIdentificationForm.controls['captureType'].value,
+          CaptureTimeOut: 180.0,
+          CaptureOperationName: EnumCaptureOperationName.IDENTIFY
         };
       } else if (engine == EnumEnginesMapper.MultiModal) {
         const v12BaseAPI = this.cookieService.getValueByName(
@@ -340,6 +350,7 @@ export class IdentifyComponent implements OnInit {
         ),
         SequenceNo: null,
         Images: this.bioImages,
+        Templates:this.fvTemplates
       };
       this.identifyReqModel = new BioServiceRequest(identifyReqModel);
     } catch (error) {
@@ -355,6 +366,8 @@ export class IdentifyComponent implements OnInit {
     this.showIdentify(false);
     // stop here if form is invalid
     if (this.bioCloudIdentificationForm.invalid) {
+      this.spinner.hide('spinrAllModules');
+      this.alertService.warning(MessageConstants.GENERAL_EMPTY_FORM_SUBMITTED);
       return;
     }
     this.prepareCaptureRequest();
@@ -370,7 +383,11 @@ export class IdentifyComponent implements OnInit {
             if (response.isSuccess) {
               this.spinner.hide('spinrAllModules');
               this.alertService.info(response.message);
-              this.bioImages = response.data.Images;
+              if(engine==EnumEnginesMapper.FingerVein){
+                this.fvTemplates = response.data.Templates;      
+              }else{
+                this.bioImages = response.data.Images;
+              }
               this.showIdentify(true);
             } else {
               this.spinner.hide('spinrAllModules');
@@ -408,7 +425,11 @@ export class IdentifyComponent implements OnInit {
           next: (response: BioServiceResponse) => {
             if (response.isSuccess) {
               this.spinner.hide('identifyLoading');
-              this.alertService.info(response.message);
+              if(response.data.bestResult!=null) {
+                this.alertService.info(response.message + " MemberId: "+ response.data.bestResult.id);
+              }else{
+                this.alertService.info(response.message );
+              }
             } else {
               this.spinner.hide('identifyLoading');
               this.alertService.warning(response.message);

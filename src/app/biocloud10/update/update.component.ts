@@ -260,7 +260,7 @@ export class UpdateComponent implements OnInit {
           HideCaptureUI: EnumFeatureMode.Disable,
           RelocateCaptureUI: EnumFeatureMode.Disable,
           RelocatePosition: EnumRelocatePosition.RIGHT_TOP_CORNER,
-          CaptureOperationName: EnumCaptureOperationName.ENROLL,
+          CaptureOperationName: EnumCaptureOperationName.UPDATE,
         };
       }
 
@@ -278,7 +278,7 @@ export class UpdateComponent implements OnInit {
     const singleDevice: any = this.deviceNameList.filter((deviceName) => {
       return deviceName.name === selectedDevice;
     });
-    return singleDevice[1].engineName; // FVHT01
+    return singleDevice[0].engineName; // FVHT01
   }
 
   prepareRegRequestModel() {

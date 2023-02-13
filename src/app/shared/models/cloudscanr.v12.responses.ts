@@ -35,6 +35,7 @@ export class CaptureResponseV12Model {
 export interface CaptureResponseV12Interface {
   CloudScanrStatus: CloudScanrV12StatusInterface;
   Images: CaptureImages;
+  Templates: Templates;
   CaptureID: string;
   MachineKey: string;
 }
@@ -50,7 +51,8 @@ export interface CaptureImages {
   Fingerprint?: CaptureFingerImage[] | null;
   Iris?: CaptureIrisImage [] | null;
   Face?: CaptureFaceImage[] | null;
-  Fingervein?: CaptureFingervein[] | EnumTypeOfTemplate.NONE;
+  //Fingervein?: CaptureFingervein[] | EnumTypeOfTemplate.NONE;
+  Templates?: Templates | null;
 }
 export interface CaptureFingerImage  {
   Position: number;
@@ -66,6 +68,14 @@ export interface CaptureIrisImage  {
     Base64Image: string;
   }
 
-  export interface CaptureFingervein   {
-    TypeOfTemplate: string;
-  }
+  // export interface CaptureFingervein   {
+  //   TypeOfTemplate: string;
+  // }
+  export interface Fingervein {
+    Position: number;
+    Base64Template: string;
+    TypeOfTemplate: EnumTypeOfTemplate;
+}
+export interface Templates {
+  Fingerveins: Fingervein[];
+}

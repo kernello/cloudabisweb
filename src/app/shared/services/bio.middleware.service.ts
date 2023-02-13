@@ -177,7 +177,7 @@ export class BioMiddlewareService {
   }
 
   appConfigVersionV10Check() {
-    debugger;
+    //debugger;
     this.isV12Track =
       this.cookieService.getValueByName(
         CookiesConstants.TRACK_DEFAULT_VERSION,
@@ -272,15 +272,18 @@ export class BioMiddlewareService {
       this.routeService.routeToPage(APPConfigRoutesConstants.APP_CONFIG_URL);
     }, 1000);
   }
-
+  V12CreateTokenFromAppConfig(){
+    this.prepareAuthV12RequestModel();
+    this.preparaAuthV12Response(this.authReqV12Model);
+  }
   tokenAuthenticationV12() {
-    this.v12authdata = this.localDbStore.getData(APIConstants.V12_AUTH_DATA);
 
+    this.v12authdata = this.localDbStore.getData(APIConstants.V12_AUTH_DATA);
+    debugger;
     if (this.helperService.validData(this.v12authdata)) {
-      let token = JSON.parse(this.v12authdata).data.accessToken; //JSON.parse(this.v12authdata).data.expiresIn
-      if (this.isTokenValid(token)) {
-        this.localDbStore.setData(APIConstants.TOKEN, token);
-      } else {
+      let expiresIn = JSON.parse(this.v12authdata).data.expiresIn;
+      if (Date.now() > expiresIn) {
+        //if expires
         this.prepareAuthV12RequestModel();
         this.preparaAuthV12Response(this.authReqV12Model);
       }
@@ -318,6 +321,7 @@ export class BioMiddlewareService {
           next: (response: ServiceModelResponse<BioPluginTokenReponse>) => {
             debugger;
             if (response.isSuccess) {
+              response.data.expiresIn=new Date(Date.now() + (response.data.expiresIn * 1000)).getTime();
               this.localDbStore.setData(APIConstants.V12_AUTH_DATA, response);
               this.localDbStore.setData(
                 APIConstants.TOKEN,
@@ -349,7 +353,7 @@ export class BioMiddlewareService {
   }
 
   checkAppConfigEmptiness(v12: boolean) {
-    debugger;
+    //debugger;
     if (v12) {
       const clientApiKey = this.cookieService.getValueByName(
         CookiesConstants.CABClientAPIKey
@@ -381,19 +385,39 @@ export class BioMiddlewareService {
     return false;
   }
 
-  tokenAuthenticationV10() {
+  V10CreateTokenFromAppConfig(){
     debugger;
+    this.prepareAuthV10RequestModel();
+    this.preparaAuthV10Response(this.authReqParamsV10Model);
+  }
+
+  tokenAuthenticationV10() {
+    this.v10authdata = this.localDbStore.getData(APIConstants.V10_AUTH_DATA);
+    debugger;
+    if (this.helperService.validData(this.v10authdata)) {
+      let expires_in = JSON.parse(this.v10authdata).data.expires_in;
+      if (Date.now() > expires_in) {
+        //if expires
+        this.prepareAuthV10RequestModel();
+        this.preparaAuthV10Response(this.authReqParamsV10Model);
+      }
+    }
+    else {
+      this.prepareAuthV10RequestModel();
+      this.preparaAuthV10Response(this.authReqParamsV10Model);
+    }
     // this.v10authdata = this.localDbStore.getData(APIConstants.V10_AUTH_DATA);
     // if (!this.helperService.validData(this.v10authdata)) {
     //   this.prepareAuthV10RequestModel();
     //   this.preparaAuthV10Response(this.authReqParamsV10Model, isLoader);
     // }
-    this.prepareAuthV10RequestModel();
-    this.preparaAuthV10Response(this.authReqParamsV10Model);
+
+    //this.prepareAuthV10RequestModel();
+    //this.preparaAuthV10Response(this.authReqParamsV10Model);
   }
 
   prepareAuthV10RequestModel() {
-    debugger;
+    //debugger;
     const grantType = Common.GRANT_TYPE;
     const username = this.cookieService.getValueByName(
       CookiesConstants.FVAppKey
@@ -417,6 +441,7 @@ export class BioMiddlewareService {
   }
 
   preparaAuthV10Response(authReqModel: AuthReqV10Params) {
+    debugger;
     try {
       this.v10Service
         .authToken(authReqModel)
@@ -425,6 +450,7 @@ export class BioMiddlewareService {
           next: (response: BaseAuthV10ResModel) => {
             debugger;
             if (response.isSuccess) {
+              response.data.expires_in=new Date(Date.now() + (response.data.expires_in * 1000)).getTime();
               this.localDbStore.setData(APIConstants.V10_AUTH_DATA, response);
               this.localDbStore.setData(
                 APIConstants.TOKEN,
@@ -455,12 +481,4 @@ export class BioMiddlewareService {
     }
   }
 
-  isTokenValid(token: string) {
-    // check if token is expired
-    const jwtToken = JSON.parse(atob(token.split('.')[1]));
-    const tokenExpired = Date.now() > jwtToken.exp * 1000;
-    if (tokenExpired) return false;
-
-    return true;
-  }
 }

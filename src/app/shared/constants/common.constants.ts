@@ -72,7 +72,8 @@ export const CloudScanrAPIURLsConstants = {
   CLOUDABISSCANR_STATUS_API_PATH: '/api/CloudScanr/ClientInfo',
   CLOUDABISSCANR_MULTI_MODAL_MATCHING_API_PATH:
     '/api/CloudScanrMultiModals/Matching',
-    CLOUDABISSCANR_FV_CAPTURE_API_PATH: '/api/CloudABISV10Captures/Fingervein'
+    CLOUDABISSCANR_FV_CAPTURE_API_PATH: '/api/CloudABISV10Captures/Fingervein',
+    CLOUDABISSCANR_FV12_CAPTURE_API_PATH: '/api/CloudABISV12Captures/Fingervein'
 };
 
 /*
@@ -247,7 +248,7 @@ export const MessageConstants = {
   COMMON_FORM_DATA_ERROR_MSG:
     'There is a problem in form data. Check and try again',
   COMMON_FORM_DATA_ERROR_TITLE: '::Data::',
-
+  GENERAL_EMPTY_FORM_SUBMITTED: 'Please fill out necessary data',
   APP_CONFIG_FORM_DATA_ERROR_MSG:
     'There is a problem in form data. Check and try again',
   APP_CONFIG_FORM_DATA_ERROR_TITLE: 'App Configuration::Form Data',
@@ -286,7 +287,7 @@ export const MessageConstants = {
   BIOCLOUD_V10_CHANGEID_ERROR_TITLE: 'V10 Change ID::Error',
   BIOCLOUD_V12_DELETEID_ERROR_TITLE: 'V12 Delete ID::Error',
   BIOCLOUD_V10_DELETEID_ERROR_TITLE: 'V10 Delete ID::Error',
-
+  
 };
 
 export const AnimatedLoaderConstants = {

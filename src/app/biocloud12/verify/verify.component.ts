@@ -94,7 +94,8 @@ import {
   CaptureResponseV12Model,
   BioServiceRequest,
   CaptureImages,
-  CurrentNotification
+  CurrentNotification,
+  Templates
 } from '@app/shared/models';
 import {
   FingerPrintDevices,
@@ -150,6 +151,7 @@ export class VerifyComponent implements OnInit {
   verifyBtnDisabled = true;
   bioImages: CaptureImages;
   currNotify: CurrentNotification;
+  fvTemplates:Templates;
 
   constructor(
     private spinner: NgxSpinnerService,
@@ -274,6 +276,14 @@ export class VerifyComponent implements OnInit {
           CaptureTimeOut: 180.0,
           CaptureOperationName: EnumCaptureOperationName.VERIFY,
         };
+      } else if (engine === EnumEnginesMapper.FingerVein) {
+        captureReqModel = {
+          DeviceName: this.bioCloudVerificationForm.controls['deviceName'].value,
+          QuickScan: EnumFeatureMode.Enable,
+          CaptureType: this.bioCloudVerificationForm.controls['captureType'].value,
+          CaptureTimeOut: 180.0,
+          CaptureOperationName: EnumCaptureOperationName.VERIFY
+        };
       } else if (engine == EnumEnginesMapper.MultiModal) {
         const v12BaseAPI = this.cookieService.getValueByName(
           CookiesConstants.CABBaseURL,
@@ -354,6 +364,7 @@ export class VerifyComponent implements OnInit {
         RegistrationId:
           this.bioCloudVerificationForm.controls['registrationNo'].value,
         Images: this.bioImages,
+        Templates:this.fvTemplates
       };
       this.verifyReqModel = new BioServiceRequest(verifyReqModel);
     } catch (error) {
@@ -370,6 +381,8 @@ export class VerifyComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.bioCloudVerificationForm.invalid) {
+      this.spinner.hide('spinrAllModules');
+      this.alertService.warning(MessageConstants.GENERAL_EMPTY_FORM_SUBMITTED);
       return;
     }
     this.prepareCaptureRequest();
@@ -387,7 +400,11 @@ export class VerifyComponent implements OnInit {
             if (response.isSuccess) {
               this.spinner.hide('spinrAllModules');
               this.alertService.info(response.message);
-              this.bioImages = response.data.Images;
+              if(engine==EnumEnginesMapper.FingerVein){
+                this.fvTemplates = response.data.Templates;      
+              }else{
+                this.bioImages = response.data.Images;
+              }
               this.showVerify(true);
             } else {
               this.spinner.hide('spinrAllModules');

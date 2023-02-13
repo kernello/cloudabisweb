@@ -84,7 +84,7 @@ export class BaseApiService {
   }
 
   protected setAuthHeader() {
-    debugger;
+    //debugger;
     const token = JSON.parse(this.storageService.getData(APIConstants.TOKEN));
     this.httpOptions.headers = this.httpOptions.headers.set('Authorization', 'Bearer ' + token);
   }

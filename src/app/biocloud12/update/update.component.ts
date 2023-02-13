@@ -94,7 +94,8 @@ import {
   CaptureResponseV12Model,
   BioServiceRequest,
   CaptureImages,
-  CurrentNotification
+  CurrentNotification,
+  Templates
 } from '@app/shared/models';
 import {
   FingerPrintDevices,
@@ -150,6 +151,7 @@ export class UpdateComponent implements OnInit {
  updateBtnDisabled = true;
  bioImages: CaptureImages;
  currNotify: CurrentNotification;
+ fvTemplates:Templates;
 
   constructor(
     private spinner: NgxSpinnerService,
@@ -273,6 +275,14 @@ export class UpdateComponent implements OnInit {
           CaptureTimeOut: 180.0,
           CaptureOperationName: EnumCaptureOperationName.UPDATE,
         };
+      } else if (engine === EnumEnginesMapper.FingerVein) {
+        captureReqModel = {
+          DeviceName: this.bioCloudUpdationForm.controls['deviceName'].value,
+          QuickScan: EnumFeatureMode.Enable,
+          CaptureType: this.bioCloudUpdationForm.controls['captureType'].value,
+          CaptureTimeOut: 180.0,
+          CaptureOperationName: EnumCaptureOperationName.UPDATE
+        };
       } else if (engine == EnumEnginesMapper.MultiModal) {
         const v12BaseAPI = this.cookieService.getValueByName(
           CookiesConstants.CABBaseURL,
@@ -353,6 +363,7 @@ export class UpdateComponent implements OnInit {
         RegistrationId:
           this.bioCloudUpdationForm.controls['registrationNo'].value,
         Images: this.bioImages,
+        Templates:this.fvTemplates
       };
       this.updateReqModel = new BioServiceRequest(updateReqModel);
     } catch (error) {
@@ -366,9 +377,10 @@ export class UpdateComponent implements OnInit {
   onSubmit() {
     this.spinner.show('spinrAllModules');
     this.showUpdate(false);
-
     // stop here if form is invalid
     if (this.bioCloudUpdationForm.invalid) {
+      this.spinner.hide('spinrAllModules');
+      this.alertService.warning(MessageConstants.GENERAL_EMPTY_FORM_SUBMITTED);
       return;
     }
     this.prepareCaptureRequest();
@@ -385,7 +397,11 @@ export class UpdateComponent implements OnInit {
             if (response.isSuccess) {
               this.spinner.hide('spinrAllModules');
               this.alertService.info(response.message);
-              this.bioImages = response.data.Images;
+              if(engine==EnumEnginesMapper.FingerVein){
+                this.fvTemplates = response.data.Templates;      
+              }else{
+                this.bioImages = response.data.Images;
+              }
               this.showUpdate(true);
             } else {
               this.spinner.hide('spinrAllModules');
