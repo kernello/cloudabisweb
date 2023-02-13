@@ -37,7 +37,10 @@ export const MultimodalDevices: Array<string> = ['MultiModal'];
 /*
  * FingerVein supported devices
  */
-export const FingerVeinDevices: Array<string> = ['HitachiFV'];
+export const FingerVeinDevices: Array<string> = [
+  'HitachiFV',
+  'HitachiH1'
+];
 
 /*
  * Fingerprint supported devices list
@@ -57,7 +60,7 @@ export const BiometricDeviceList = [
   { name: 'IriTechBinocular', description: 'IriTechBinocular', engineName:'Iris' },
   { name: 'Face', description: 'Face', engineName:'Face' },
   { name: 'MultiModal', description: 'MultiModal', engineName:'MultiModal' },
-  { name: 'HitachiFV', description: 'HitachiFV', engineName:'FingerVein' },
+  { name: 'HitachiH1', description: 'HitachiH1', engineName:'FingerVein' },
   { name: 'HitachiFV', description: 'HitachiFV', engineName:'FVHT01' }
 ];
 
@@ -76,7 +79,7 @@ export const BiometricEngineList = [
   { name: 'Iris', deviceName: 'IriTechBinocular' },
   { name: 'Face', deviceName: 'Face' },
   { name: 'MultiModal', deviceName: 'MultiModal' },
-  { name: 'FingerVein', deviceName: 'HitachiFV' },
+  { name: 'FingerVein', deviceName: 'HitachiH1' },
   { name: 'FVHT01', deviceName: 'HitachiFV' }
 ];
 

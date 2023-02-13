@@ -382,7 +382,7 @@ export class CloudabisV10Service {
   ) {
     debugger;
     let res = new ResponseMsg();
-
+    
     switch (operationName) {
       case EnumOperationName.None:
         if (this.helperService.validData(authResModel.error)) {
@@ -422,7 +422,10 @@ export class CloudabisV10Service {
         }else if (bioResModel.OperationResult === AbisConstant.MatchFound) {
           res.code = ErrorCode.CS0209;
           res.message = ErrorCode.CS0209_MESSAGE.concat(bioResModel.BestResult.ID);
-        }else {
+        }else if (bioResModel.OperationResult === AbisConstant.IsRegisterSuccess) {
+          res.code = ErrorCode.CS0202;
+          res.message = ErrorCode.CS0202_MESSAGE;
+        } else {
           this.getMsgContentByOtherStatus(bioResModel);
         }
         break;
@@ -433,7 +436,7 @@ export class CloudabisV10Service {
             bioResModel.BestResult.ID
           );
         } else if (
-          bioResModel.OperationResult === AbisConstant.RegisterOrUpdateFailed
+          bioResModel.OperationResult === AbisConstant.NoMatchFound
         ) {
           res.code = ErrorCode.CS0210;
           res.message = ErrorCode.CS0210_MESSAGE;
@@ -513,7 +516,7 @@ export class CloudabisV10Service {
   }
 
   getMsgContentByOtherStatus(bioResModel?: BioResV10Model) {
-    debugger
+    //debugger
     let res = new ResponseMsg();
     switch (bioResModel.OperationResult) {
       case AbisConstant.PoorImageQuality:

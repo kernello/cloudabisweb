@@ -18,7 +18,7 @@ import {
   EnumOperationalResponseStatus,
   EnumTypeOfTemplate,
 } from '@app/shared/enums';
-
+import { Templates } from './cloudscanr.v12.responses';
 export class AuthRequestV12Model {
   //baseApiUrl: string;
   clientAPIKey: string;
@@ -81,12 +81,14 @@ export class BioServiceRequest {
   SequenceNo?: string;
   RegistrationId?: string;
   Images: BiometricImages;
+  Templates: Templates;
 
   constructor(reqModel?: any){
     this.ClientKey = reqModel.ClientKey;
     this.SequenceNo = reqModel.SequenceNo?reqModel.SequenceNo: null;
     this.RegistrationId = reqModel.RegistrationId?reqModel.RegistrationId: null;
     this.Images = reqModel.Images;
+    this.Templates = reqModel?.Templates;
   }
 }
 
@@ -94,7 +96,7 @@ export class BiometricImages {
   Fingerprint?: FingerImage[] | null;
   Iris?: IrisImage[] | null;
   Face?: FaceImage[] | null;
-  Fingervein?: Fingervein[] | EnumTypeOfTemplate.NONE;
+  //?: Fingervein[] | EnumTypeOfTemplate.NONE;
   constructor() {}
 }
 
@@ -116,7 +118,7 @@ export class FaceImage {
   constructor() {}
 }
 
-export class Fingervein {
-  TypeOfTemplate?: string | EnumTypeOfTemplate.NONE;
-  constructor() {}
-}
+// export class Fingervein {
+//   TypeOfTemplate?: string | EnumTypeOfTemplate.NONE;
+//   constructor() {}
+// }

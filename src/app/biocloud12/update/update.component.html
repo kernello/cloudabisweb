@@ -35,6 +35,7 @@
                 <div class="col-sm-9">
                   <select name="select" class="form-control-sm form-control" id="captureType" name="captureType"
                     formControlName="captureType">
+                    <option value="" disabled selected>Select Capture Type</option>
                     <option *ngFor="let captureType of captureTypeList" value={{captureType.name}}>
                       {{captureType.description}}
                     </option>
@@ -79,9 +80,9 @@
                 </div>
               </div>
               <div class="row">
-                <div  class="col-md-5"></div>
-                <div class="col-md-7  btn-right-div">
-                  <button type="submit" class="btn btn-primary btn-margin-right"> Biometric Capture </button>
+                <!-- <div  class="col-md-5"></div> -->
+                <div class="col-md-12  btn-right-div">
+                  <button type="submit" class="btn btn-primary btn-margin-right" [disabled]="!f.valid"> Biometric Capture </button>
                   <button type="button" class="btn btn-primary btn-margin-right" [disabled]=updateBtnDisabled
                   (click)="update();"> Update </button>
                   <button class="btn btn-primary me-0 btn-margin-right" (click)="cancel()">Close</button>

@@ -95,6 +95,7 @@ import {
   BioServiceRequest,
   CaptureImages,
   CurrentNotification,
+  Templates
 } from '@app/shared/models';
 import {
   FingerPrintDevices,
@@ -149,6 +150,7 @@ export class RegisterComponent implements OnInit {
   regBtnDisabled = true;
   bioImages: CaptureImages;
   currNotify: CurrentNotification;
+  fvTemplates:Templates;
 
   constructor(
     private spinner: NgxSpinnerService,
@@ -266,6 +268,14 @@ export class RegisterComponent implements OnInit {
           CaptureTimeOut: 180.0,
           CaptureOperationName: EnumCaptureOperationName.ENROLL,
         };
+      } else if (engine === EnumEnginesMapper.FingerVein) {
+        captureReqModel = {
+          DeviceName: this.bioCloudRegisterForm.controls['deviceName'].value,
+          QuickScan: EnumFeatureMode.Enable,
+          CaptureType: this.bioCloudRegisterForm.controls['captureType'].value,
+          CaptureTimeOut: 180.0,
+          CaptureOperationName: EnumCaptureOperationName.ENROLL
+        };
       }else if (engine == EnumEnginesMapper.MultiModal) {
 
         const v12BaseAPI = this.cookieService.getValueByName(CookiesConstants.CABBaseURL, DataTypeConstants.String);
@@ -325,6 +335,7 @@ export class RegisterComponent implements OnInit {
         RegistrationId:
           this.bioCloudRegisterForm.controls['registrationNo'].value,
         Images: this.bioImages,
+        Templates:this.fvTemplates
       };
       this.regReqModel = new BioServiceRequest(regReqModel);
     } catch (error) {
@@ -341,6 +352,8 @@ export class RegisterComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.bioCloudRegisterForm.invalid) {
+      this.spinner.hide('spinrAllModules');
+      this.alertService.warning(MessageConstants.GENERAL_EMPTY_FORM_SUBMITTED);
       return;
     }
     this.prepareCaptureRequest();
@@ -356,7 +369,11 @@ export class RegisterComponent implements OnInit {
             if (response.isSuccess) {
               this.spinner.hide('spinrAllModules');
               this.alertService.info(response.message);
-              this.bioImages = response.data.Images;
+              if(engine==EnumEnginesMapper.FingerVein){
+                this.fvTemplates = response.data.Templates;      
+              }else{
+                this.bioImages = response.data.Images;
+              }
               this.showRegister(true);
               
             } else {
@@ -395,7 +412,11 @@ export class RegisterComponent implements OnInit {
           next: (response: BioServiceResponse) => {
             if (response.isSuccess) {
               this.spinner.hide('regLoading');
-              this.alertService.info(response.message);
+              if(response.data.bestResult!=null) {
+                this.alertService.info(response.message + " MemberId: "+ response.data.bestResult.id);
+              }else{
+                this.alertService.info(response.message );
+              }
             } else {
               this.spinner.hide('regLoading');
               this.alertService.warning(response.message);

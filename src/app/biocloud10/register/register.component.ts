@@ -272,10 +272,11 @@ export class RegisterComponent implements OnInit {
   }
 
   getEngineNameByDevice(selectedDevice: string) {
+    //debugger;
     const singleDevice: any = this.deviceNameList.filter((deviceName) => {
       return deviceName.name === selectedDevice;
     });
-    return singleDevice[1].engineName; // FVHT01
+    return singleDevice[0].engineName; // FVHT01
   }
 
   prepareRegRequestModel() {

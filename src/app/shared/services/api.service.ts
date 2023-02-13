@@ -68,12 +68,12 @@ export class ApiService {
   constructor(private http: HttpClient, private storageService: LocalStorageService) {}
 
   initializeBaseURL(inputUrl: string) {
-    debugger;
+    //debugger;
     this.baseUrl = inputUrl;
   }
 
   protected setAuthHeader() {
-    debugger;
+    //debugger;
     const token = JSON.parse(this.storageService.getData(APIConstants.TOKEN));
     this.httpOptions.headers = this.httpOptions.headers.set(
       'Authorization',

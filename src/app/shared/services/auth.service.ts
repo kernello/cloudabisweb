@@ -66,7 +66,7 @@ export class AuthService {
   }
 
   protected setAuthHeader() {
-    debugger;
+    //debugger;
     this.httpOptions.headers = this.httpOptions.headers.set(
       'X-API-Key',
       'edda3ce0'

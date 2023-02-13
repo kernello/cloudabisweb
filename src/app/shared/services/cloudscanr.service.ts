@@ -155,7 +155,7 @@ export class CloudscanrService {
     /*
      * Set base API
      */
-    debugger;
+    //debugger;
     // this.apiService.baseUrl = null;
     // this.apiService.initializeBaseURL(
     //   CloudScanrAPIURLsConstants.CLOUDABISSCANR_BASE_API_URL
@@ -223,6 +223,8 @@ export class CloudscanrService {
         ? CloudScanrAPIURLsConstants.CLOUDABISSCANR_FP_CAPTURE_API_PATH
         : engineName === EnumEnginesMapper.Iris
         ? CloudScanrAPIURLsConstants.CLOUDABISSCANR_IRIS_CAPTURE_API_PATH
+        : engineName === EnumEnginesMapper.FingerVein
+        ? CloudScanrAPIURLsConstants.CLOUDABISSCANR_FV12_CAPTURE_API_PATH
         : engineName === EnumEnginesMapper.MultiModal
         ? CloudScanrAPIURLsConstants.CLOUDABISSCANR_MULTI_MODEL_CAPTURE_API_PATH
         : CloudScanrAPIURLsConstants.CLOUDABISSCANR_FACE_CAPTURE_API_PATH;
@@ -242,7 +244,7 @@ export class CloudscanrService {
   getLegacyCapturedData(captureReqModel: CaptureRequestV10Model, engineName: string): Observable<CaptureResponseV10Model> {
     this.setBaseUrl();
     var reqModel = this.createModels(captureReqModel, engineName);
-    debugger;
+    //debugger;
     var apiCaptureEndPoint =
       engineName === EnumEnginesMapper.FVHT01? CloudScanrAPIURLsConstants.CLOUDABISSCANR_FV_CAPTURE_API_PATH: '';
 
@@ -445,6 +447,78 @@ export class CloudscanrService {
         
         break;
 
+      case EnumEnginesMapper.FingerVein:
+        debugger;
+        if (
+          captureParam.QuickScan !== null &&
+          captureParam.QuickScan !== undefined
+        ) {
+          requestBody.QuickScan = captureParam.QuickScan;
+        }
+        if (
+          captureParam.DeviceName !== null &&
+          captureParam.DeviceName !== undefined
+        ) {
+          requestBody.DeviceName = captureParam.DeviceName;
+        }
+
+        if (
+          captureParam.CaptureTimeOut !== null &&
+          captureParam.CaptureTimeOut !== undefined
+        ) {
+          requestBody.CaptureTimeOut = captureParam.CaptureTimeOut;
+        }
+
+        if (
+          captureParam.FaceImage !== null &&
+          captureParam.FaceImage !== undefined
+        ) {
+          requestBody.FaceImage = captureParam.FaceImage;
+        }
+        if (
+          captureParam.CaptureType !== null &&
+          captureParam.CaptureType !== undefined
+        ) {
+          requestBody.CaptureType = captureParam.CaptureType;
+        }
+
+        if (
+          captureParam.TenPrint !== null &&
+          captureParam.TenPrint !== undefined
+        ) {
+          requestBody.TenPrint = captureParam.TenPrint;
+        }
+
+        if (
+          captureParam.HideCaptureUI !== null &&
+          captureParam.HideCaptureUI !== undefined
+        ) {
+          requestBody.HideCaptureUI = captureParam.HideCaptureUI;
+        }
+
+        if (
+          captureParam.RelocateCaptureUI !== null &&
+          captureParam.RelocateCaptureUI !== undefined
+        ) {
+          requestBody.RelocateCaptureUI = captureParam.RelocateCaptureUI;
+        }
+
+        if (
+          captureParam.RelocatePosition !== null &&
+          captureParam.RelocatePosition !== undefined
+        ) {
+          requestBody.RelocatePosition = captureParam.RelocatePosition;
+        }
+
+        if (
+          captureParam.CaptureOperationName !== null &&
+          captureParam.CaptureOperationName !== undefined
+        ) {
+          requestBody.CaptureOperationName = captureParam.CaptureOperationName;
+        }
+        
+        break;
+  
       case EnumEnginesMapper.MultiModal:
         if (
           captureParam.DeviceName !== null &&
