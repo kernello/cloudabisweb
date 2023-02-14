@@ -184,7 +184,7 @@ export class IsRegisterComponent implements OnInit, OnDestroy {
       engineName: new FormControl(''),
       registrationNo: new FormControl('', [
         Validators.required,
-        Validators.minLength(10),
+        Validators.minLength(3),
         WhiteSpaceValidator.noWhiteSpace,
       ]),
     });

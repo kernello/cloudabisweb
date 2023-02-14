@@ -168,7 +168,7 @@ export class CloudabisV12Service {
       )
       .pipe(
         map((response: BaseModelResponse<BioPluginTokenReponse>) => {
-          debugger;
+          //debugger;
           if (response) {
             const authResponse =
               new ServiceModelResponse<BioPluginTokenReponse>(response);

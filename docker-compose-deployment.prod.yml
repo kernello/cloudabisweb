@@ -2,8 +2,8 @@ version: '3.5' # We use version 3.5 syntax
 
 services: # Here we define our service(s)
   cloudabis.web.sample: # The name of the service
-    image:  docker push cloudabis/web-sample:sample-1.0.2  #docker image or other image
-    container_name: cloudabis-web-sample-1.0.2 # Container name
+    image:  docker push cloudabis/web-sample:sample-2.1.1  #docker image or other image
+    container_name: cloudabis-web-sample-2.1.1 # Container name
     build:  # Location of our Dockerfile
       context: .
       dockerfile: Dockerfile

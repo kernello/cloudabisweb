@@ -135,6 +135,7 @@ export class RegisterComponent implements OnInit {
   isV12 = true;
   isV12Track = true;
   captureTypeList: Array<any> = [];
+  defaultval = null;
   deviceNameList: Array<any> = BiometricDeviceList;
   imageLoader = AnimatedLoaderConstants.SMALL_ROUND_LOADER;
   isCookieSavedOK = false;
@@ -197,6 +198,7 @@ export class RegisterComponent implements OnInit {
     );
     this.createForm();
     this.initializeFormData();
+    this.defaultval = this.captureTypeList[1].name;
     this.bioMiddlewareService.tokenAuthenticationV10();
     setTimeout(() => this.spinner.hide('spinrAllModules'), 5000);
   }
@@ -207,7 +209,7 @@ export class RegisterComponent implements OnInit {
       deviceName: new FormControl(''),
       registrationNo: new FormControl('', [
         Validators.required,
-        Validators.minLength(10),
+        Validators.minLength(3),
         WhiteSpaceValidator.noWhiteSpace,
       ]),
     });

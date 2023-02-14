@@ -135,6 +135,7 @@ export class VerifyComponent implements OnInit {
   isV12 = true;
   isV12Track = true;
   captureTypeList: Array<any> = [];
+  defaultval = null;
   deviceNameList: Array<any> = BiometricDeviceList;
   loading = false;
   imageLoader = AnimatedLoaderConstants.SMALL_ROUND_LOADER;
@@ -199,6 +200,7 @@ export class VerifyComponent implements OnInit {
     );
     this.createForm();
     this.initializeFormData();
+    this.defaultval = this.captureTypeList[0].name;
     this.bioMiddlewareService.tokenAuthenticationV10();
     setTimeout(() => this.spinner.hide('spinrAllModules'), 5000);
   }
@@ -209,7 +211,8 @@ export class VerifyComponent implements OnInit {
       deviceName: new FormControl(''),
       registrationNo: new FormControl('', [
         Validators.required,
-        Validators.minLength(10),
+        Validators.minLength(3),
+        Validators.maxLength(50),
         WhiteSpaceValidator.noWhiteSpace,
       ]),
     });

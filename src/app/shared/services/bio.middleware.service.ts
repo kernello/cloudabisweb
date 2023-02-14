@@ -319,7 +319,7 @@ export class BioMiddlewareService {
         .pipe(debounceTime(300))
         .subscribe({
           next: (response: ServiceModelResponse<BioPluginTokenReponse>) => {
-            debugger;
+            //debugger;
             if (response.isSuccess) {
               response.data.expiresIn=new Date(Date.now() + (response.data.expiresIn * 1000)).getTime();
               this.localDbStore.setData(APIConstants.V12_AUTH_DATA, response);
@@ -441,14 +441,14 @@ export class BioMiddlewareService {
   }
 
   preparaAuthV10Response(authReqModel: AuthReqV10Params) {
-    debugger;
+    //debugger;
     try {
       this.v10Service
         .authToken(authReqModel)
         .pipe(debounceTime(300))
         .subscribe({
           next: (response: BaseAuthV10ResModel) => {
-            debugger;
+            //debugger;
             if (response.isSuccess) {
               response.data.expires_in=new Date(Date.now() + (response.data.expires_in * 1000)).getTime();
               this.localDbStore.setData(APIConstants.V10_AUTH_DATA, response);

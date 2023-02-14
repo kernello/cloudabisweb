@@ -126,6 +126,7 @@ export class IdentifyComponent implements OnInit {
   isV12 = true;
   isV12Track = true;
   captureTypeList: Array<any> = [];
+  defaultval = null;
   deviceNameList: Array<any> = BiometricDeviceList;
   loading = false;
   imageLoader = AnimatedLoaderConstants.SMALL_ROUND_LOADER;
@@ -178,6 +179,7 @@ export class IdentifyComponent implements OnInit {
     this.helperService.currentNotification.subscribe(
       (notify) => (this.currNotify = notify)
     );
+    debugger;
     if (this.currNotify.version === VersionType.V12 && !this.currNotify.isOk && this.currNotify.scopeType === ScopeType.AppConfig) {
       this.spinner.hide('spinrAllModules');
       this.notifyService.showError(this.currNotify.message, this.currNotify.title);
@@ -186,6 +188,7 @@ export class IdentifyComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    debugger;
     this.titleService.setTitle(Common.BIOCLOUD_V12_IDENTIFY_TITLE);
     this.scriptService.enableLayout();
     this.isV12 = this.cookieService.getValueByName(
@@ -194,6 +197,7 @@ export class IdentifyComponent implements OnInit {
     );
     this.createForm();
     this.initializeFormData();
+    this.defaultval = this.captureTypeList[0].name;
     this.bioMiddlewareService.tokenAuthenticationV12();
     setTimeout(() => this.spinner.hide('spinrAllModules'), 5000);
   }
@@ -207,6 +211,7 @@ export class IdentifyComponent implements OnInit {
 
   initializeFormData() {
     try {
+      debugger;
       this.captureTypeList = [];
       CaptureTypeList.forEach((item, index) => {
         this.captureTypeList.push(item);
