@@ -41,7 +41,7 @@
                       registration id</i></span>
                   <span
                     *ngIf="bioCloudChangeIDForm.get('registrationNo').errors?.minlength && !(bioCloudChangeIDForm.get('registrationNo').errors?.noWhiteSpace)"><i>Enter
-                      atleast 10 characters</i></span>
+                      atleast 3 characters</i></span>
                   <span *ngIf="bioCloudChangeIDForm.get('registrationNo').errors?.noWhiteSpace"><i>White and empty
                       spaces are not allowed</i></span>
                 </div>
@@ -58,7 +58,7 @@
                       new registration id</i></span>
                   <span
                     *ngIf="bioCloudChangeIDForm.get('newRegistrationNo').errors?.minlength && !(bioCloudChangeIDForm.get('newRegistrationNo').errors?.noWhiteSpace)"><i>Enter
-                      atleast 10 characters</i></span>
+                      atleast 3 characters</i></span>
                   <span *ngIf="bioCloudChangeIDForm.get('newRegistrationNo').errors?.noWhiteSpace"><i>White and empty
                       spaces are not allowed</i></span>
                 </div>

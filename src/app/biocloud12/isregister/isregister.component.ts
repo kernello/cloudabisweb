@@ -177,7 +177,7 @@ export class IsRegisterComponent implements OnInit, OnDestroy {
     this.bioCloudIsRegisterForm = this.formBuilder.group({
       registrationNo: new FormControl('', [
         Validators.required,
-        Validators.minLength(10),
+        Validators.minLength(3),
         WhiteSpaceValidator.noWhiteSpace,
       ]),
     });

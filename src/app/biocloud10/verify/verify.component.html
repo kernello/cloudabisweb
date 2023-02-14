@@ -34,8 +34,8 @@
                 <label for="captureType" class="col-sm-3 col-form-label">Capture Type</label>
                 <div class="col-sm-9">
                   <select name="select" class="form-control-sm form-control" id="captureType" name="captureType"
-                    formControlName="captureType">
-                    <option value="" disabled selected>Select Capture Type</option>
+                    formControlName="captureType" [(ngModel)]="defaultval">
+                    <option value="" disabled>Select Capture Type</option>
                     <option *ngFor="let captureType of captureTypeList" value={{captureType.name}}>
                       {{captureType.description}}
                     </option>
@@ -70,7 +70,7 @@
                         registration id</i></span>
                     <span
                       *ngIf="bioCloudVerifyForm.get('registrationNo').errors?.minlength && !(bioCloudVerifyForm.get('registrationNo').errors?.noWhiteSpace)"><i>Enter
-                        atleast 10
+                        atleast 3
                         characters</i></span>
                     <span *ngIf="bioCloudVerifyForm.get('registrationNo').errors?.noWhiteSpace"><i>White and empty
                         spaces are

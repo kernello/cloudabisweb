@@ -62,7 +62,7 @@ export class ServiceModelResponse<T> {
 
   
   constructor(response: BaseModelResponse<T>) {
-    debugger;
+    //debugger;
     if (response.status && response.status === ModelInterfaceConstants.Success) {
       this.isSuccess = true;
     } else {

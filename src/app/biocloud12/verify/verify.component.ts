@@ -126,6 +126,7 @@ export class VerifyComponent implements OnInit {
   isV12 = true;
   isV12Track = true;
   captureTypeList: Array<any> = [];
+  defaultval = null;
   deviceNameList: Array<any> = BiometricDeviceList;
   loading = false;
   imageLoader = AnimatedLoaderConstants.SMALL_ROUND_LOADER;
@@ -188,12 +189,14 @@ export class VerifyComponent implements OnInit {
   ngOnInit(): void {
     this.titleService.setTitle(Common.BIOCLOUD_V12_VERIFY_TITLE);
     this.scriptService.enableLayout();
+    debugger;
     this.isV12 = this.cookieService.getValueByName(
       CookiesConstants.CLOUD_VERSION,
       DataTypeConstants.Boolean
     );
     this.createForm();
     this.initializeFormData();
+    this.defaultval = this.captureTypeList[0].name;
     this.bioMiddlewareService.tokenAuthenticationV12();
     setTimeout(() => this.spinner.hide('spinrAllModules'), 5000);
   }
@@ -204,7 +207,7 @@ export class VerifyComponent implements OnInit {
       deviceName: new FormControl(''),
       registrationNo: new FormControl('', [
         Validators.required,
-        Validators.minLength(10),
+        Validators.minLength(3),
         WhiteSpaceValidator.noWhiteSpace,
       ]),
     });

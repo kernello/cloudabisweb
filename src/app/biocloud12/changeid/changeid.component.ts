@@ -174,12 +174,12 @@ export class ChangeidComponent implements OnInit {
     this.bioCloudChangeIDForm = this.formBuilder.group({
       registrationNo: new FormControl('', [
         Validators.required,
-        Validators.minLength(10),
+        Validators.minLength(3),
         WhiteSpaceValidator.noWhiteSpace,
       ]),
       newRegistrationNo: new FormControl('', [
         Validators.required,
-        Validators.minLength(10),
+        Validators.minLength(3),
         WhiteSpaceValidator.noWhiteSpace,
       ]),
     });
